@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\forneceProduto;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -26,7 +28,8 @@ class DatabaseSeeder extends Seeder
             fornecedorSeeder::class,
             produtoSeeder::class,
             movimentoSeeder::class,
-            estoqueSeeder::class
+            estoqueSeeder::class,
+            forneceProdutoSeeder::class
         ]);
     }
 }

@@ -16,9 +16,16 @@ class produtoSeeder extends Seeder
     public function run()
     {
         DB::table('produtos')->insert([
-            'nome'=>'Soluções',
-            'id_categoria'=>1,
-            'id_fornecedor'=>1
+            'nome'=>'Produto 01',
+            'id_categoria'=>1
+        ]);
+        DB::table('produtos')->insert([
+            'nome'=>'Produto 02',
+            'id_categoria'=>2
+        ]);
+        DB::table('produtos')->insert([
+            'nome'=>'Produto 03',
+            'id_categoria'=>3
         ]);
     }
 }

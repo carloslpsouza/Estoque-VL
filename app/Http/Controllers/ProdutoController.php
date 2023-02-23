@@ -25,10 +25,33 @@ class ProdutoController extends Controller
      */
     public function listaProdutos()
     {
-        $produtos = 'teste pass param';
-        return view('produtos.lista', ['produtos' => $produtos]);
+        $listaProdutos = Produto::join('categorias', 'produtos.id_categoria', '=','categorias.id_categoria')
+        ->get([
+            'produtos.id_produto',
+            'produtos.nome as nmp',
+            'categorias.nome as nmc'
+        ]);
+        return view('produtos.lista', ['listaProdutos' => $listaProdutos]);
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function detalheProduto($id)
+    {
+        $produto = Produto::join('categorias', 'produtos.id_categoria', '=','categorias.id_categoria')
+        ->where('id_produto', '=', $id)
+        ->get([
+            'produtos.id_produto',
+            'produtos.nome as nmp',
+            'categorias.nome as nmc'
+        ]);
+        $fornecedores = new ForneceProdutoController;
+        return view('produtos.detalhe', ['produto' => $produto, 'fornecedores'=> $fornecedores->show($id)]);
+    }
+    
     /**
      * Show the form for creating a new resource.
      *

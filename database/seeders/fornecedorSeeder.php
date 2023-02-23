@@ -17,8 +17,13 @@ class fornecedorSeeder extends Seeder
     {
         DB::table('fornecedores')->insert([
             'nome'=>'Carlos Souza',
-            'e-mail'=>'carlosp.souza@gmail.com',
+            'email'=>'carlosp.souza@gmail.com',
             'telefone'=>'+55(21)979384174'
+        ]);
+        DB::table('fornecedores')->insert([
+            'nome'=>'Intelbras',
+            'email'=>'intelbras@intelbras.com',
+            'telefone'=>'+55(41)5555555555'
         ]);
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @php
-    $titulopadrao = 'Lista Produtos';
+    $titulopadrao = 'Lista Fornecedores';
 @endphp
 
 @section('title', $titulopadrao)
@@ -9,25 +9,25 @@
         <h2>{{ $titulopadrao }}</h2>
         <div class="col-md-10">
             <table class="table table-hover">
-                <caption>Lista de produtos</caption>
+                <caption>Fornecedores</caption>
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Produto</th>
-                        <th scope="col">Categoria</th>
+                        <th scope="col">Fornecedor</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Telefone</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($listaProdutos as $prod)
-                        <tr onclick="location.href='/detalhe/{{ $prod->id_produto }}'">
+                    @foreach ($fornecedores as $item)
+                        <tr>
                             <th scope="row">
-                                {{ $prod->id_produto }}
+                                <a href="/detalhe/{{ $item->id_fornecedor }}">{{ $item->nmf }}</a>
                             </th>
                             <td>
-                                {{ $prod->nmp }}
+                                {{ $item->email }}
                             </td>
                             <td>
-                                {{ $prod->nmc }}
+                                {{ $item->nmc }}
                             </td>
                         </tr>
                     @endforeach

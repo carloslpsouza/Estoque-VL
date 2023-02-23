@@ -19,7 +19,7 @@
     <column id="COL3" populated="true" UUID="ca75444c-07d8-4424-aba7-542fcad13ec5" autoIncrement="false" autoIncrementSequenceName="user_nome_seq" defaultValue="" name="nome" nullable="0" physicalName="nome" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL4" populated="true" UUID="2f2527fa-0ed3-46ce-9d6f-769a6103af9c" autoIncrement="false" autoIncrementSequenceName="user_e-mail_seq" defaultValue="" name="e-mail" nullable="0" physicalName="e-mail" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL4" populated="true" UUID="2f2527fa-0ed3-46ce-9d6f-769a6103af9c" autoIncrement="false" autoIncrementSequenceName="user_email_seq" defaultValue="" name="email" nullable="0" physicalName="email" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
     </folder>
@@ -91,7 +91,7 @@
     <column id="COL22" populated="true" UUID="61d2a19e-2cd5-424d-b4f1-8203e76c948b" autoIncrement="false" autoIncrementSequenceName="fornecedores_nome_seq" defaultValue="" name="nome" nullable="0" physicalName="nome" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL23" populated="true" UUID="ba9a24dd-10a6-460a-ab7a-9b78181c9112" autoIncrement="false" autoIncrementSequenceName="fornecedores_e-mail_seq" defaultValue="" name="e-mail" nullable="0" physicalName="e-mail" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL23" populated="true" UUID="ba9a24dd-10a6-460a-ab7a-9b78181c9112" autoIncrement="false" autoIncrementSequenceName="fornecedores_email_seq" defaultValue="" name="email" nullable="0" physicalName="email" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
     <column id="COL24" populated="true" UUID="c8ba7618-bf3b-4ecb-a604-bfe490a20c65" autoIncrement="false" autoIncrementSequenceName="fornecedores_telefone_seq" defaultValue="" name="telefone" nullable="0" physicalName="telefone" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >

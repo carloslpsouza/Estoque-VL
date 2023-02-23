@@ -13,7 +13,8 @@
   <link href="/css/styles.css" rel="stylesheet">
 </head>
 <body>
-  <p>main</p>
-  @yield('content')  
+  <div class="conteiner-fluid">
+    @yield('content')  
+  </div>  
 </body>
 </html>
