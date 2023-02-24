@@ -25,13 +25,13 @@ class ProdutoController extends Controller
      */
     public function listaProdutos()
     {
-        $listaProdutos = Produto::join('categorias', 'produtos.id_categoria', '=','categorias.id_categoria')
+        $dados = Produto::join('categorias', 'produtos.id_categoria', '=','categorias.id_categoria')
         ->get([
-            'produtos.id_produto',
-            'produtos.nome as nmp',
-            'categorias.nome as nmc'
+            'produtos.id_produto as ID',
+            'produtos.nome as Nome',
+            'categorias.nome as Categoria'
         ]);
-        return view('produtos.lista', ['listaProdutos' => $listaProdutos]);
+        return view('lista', ['dados' => $dados, 'titulopadrao' => 'Lista de produtos']);
     }
 
     /**

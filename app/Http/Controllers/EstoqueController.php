@@ -14,14 +14,15 @@ class EstoqueController extends Controller
      */
     public function index()
     {
-        $estoque = Estoque::join('produtos', 'produtos.id_produto', '=', 'estoque.id_produto')
+
+        $dados = Estoque::join('produtos', 'produtos.id_produto', '=', 'estoque.id_produto')
         ->get([
-            'produtos.id_produto',
-            'estoque.quantidade',
-            'estoque.minimo',
-            'produtos.nome'
+            'produtos.id_produto as ID',
+            'produtos.nome as Nome',
+            'estoque.quantidade as Quantidade',
+            'estoque.minimo as Mínimo'
         ]);
-        return view('estoque.lista', ['estoque'=>$estoque]);        
+        return view('lista', ['dados' => $dados, 'titulopadrao' => 'Estoque']);        
     }
 
     /**
