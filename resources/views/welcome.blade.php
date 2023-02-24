@@ -1,6 +1,11 @@
 @extends('layouts.main')
 @section('title', 'Welcome')
 @section('content')
-    <h2>Welcome</h2>
-    <a href="/lista">Lista produtos</a>
+<div id="produtos-conteiner" class="col-md-12 offset-md-1">
+    <h3>Estoque</h3>
+    <div class="list-group">
+        <a href="/produtos" class="list-group-item list-group-item-action list-group-item-light">Lista produtos</a>
+        <a href="/estoque" class="list-group-item list-group-item-action list-group-item-light">Estoque</a>
+    </div>
+</div>
 @endsection

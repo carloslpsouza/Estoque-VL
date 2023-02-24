@@ -25,7 +25,7 @@
             <a href="#"
             class="list-group-item list-group-item-action list-group-item-light">Este produto ainda não tem fornecedor cadastrado.</a>
             @endif
-            <a href="/lista">voltar</a>
+            <a href="/produtos">voltar</a>
         </div>
     </div>
 
