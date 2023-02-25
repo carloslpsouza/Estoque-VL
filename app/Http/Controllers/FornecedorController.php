@@ -14,7 +14,25 @@ class FornecedorController extends Controller
      */
     public function index()
     {
-        //
+        $dados = Fornecedor::get([
+            'id_fornecedor as ID',
+            'nome as Nome',
+            'email as Email',
+            'telefone as Telefone'
+        ]);
+        return view('lista', ['dados' => $dados, 'titulopadrao' => 'Fornecedores', 'caminhoDetalhe' => 'fornecedor/detalhe/']); 
+    }
+
+    public function listaFornecedores($id){
+        $dados = Fornecedor::join('produtos', 'produtos.id_produto', '=', 'fornecedor.id_produto')
+        ->where('id_fornecedor', '=', $id)
+        ->get([
+            'produtos.id_produto as ID',
+            'fornecedor.nome as Nome',
+            'fornecedor.email as Email',
+            'fornecedor.telefone as Telefone'
+        ]);
+        return view('lista', ['dados' => $dados, 'titulopadrao' => 'Fornecedores', 'caminhoDetalhe' => 'fornecedor/detalhe/']); 
     }
 
     /**

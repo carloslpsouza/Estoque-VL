@@ -22,7 +22,7 @@ class EstoqueController extends Controller
             'estoque.quantidade as Quantidade',
             'estoque.minimo as Mínimo'
         ]);
-        return view('lista', ['dados' => $dados, 'titulopadrao' => 'Estoque']);        
+        return view('lista', ['dados' => $dados, 'titulopadrao' => 'Estoque', 'caminhoDetalhe' => 'estoque/detalhe']);        
     }
 
     /**

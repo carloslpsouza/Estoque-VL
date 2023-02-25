@@ -31,7 +31,7 @@ class ProdutoController extends Controller
             'produtos.nome as Nome',
             'categorias.nome as Categoria'
         ]);
-        return view('lista', ['dados' => $dados, 'titulopadrao' => 'Lista de produtos']);
+        return view('lista', ['dados' => $dados, 'titulopadrao' => 'Lista de produtos', 'caminhoDetalhe' => 'produto/detalhe/']);
     }
 
     /**
@@ -49,7 +49,7 @@ class ProdutoController extends Controller
             'categorias.nome as nmc'
         ]);
         $fornecedores = new ForneceProdutoController;
-        return view('produtos.detalhe', ['produto' => $produto, 'fornecedores'=> $fornecedores->show($id)]);
+        return view('produto.detalhe', ['produto' => $produto, 'fornecedores'=> $fornecedores->show($id)]);
     }
     
     /**

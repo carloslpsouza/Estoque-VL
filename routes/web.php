@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProdutoController::class, 'index']);
 Route::get('lista', [ProdutoController::class, 'listaProdutos']);
-Route::get('detalhe/{id}', [ProdutoController::class, 'detalheProduto']);
-Route::get('fornecedor/{produto}', [FornecedorController::class, 'listaFornecedores']);
+Route::get('produto/detalhe/{id}', [ProdutoController::class, 'detalheProduto']);
+Route::get('fornecedores', [FornecedorController::class, 'index']);
+Route::get('fornecedor/detalhe/{id}', [FornecedorController::class, 'listaFornecedores']);
 Route::get('estoque', [EstoqueController::class, 'index']);

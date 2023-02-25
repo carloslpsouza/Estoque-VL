@@ -9,17 +9,20 @@
                 <thead>
                     <tr>
                         @foreach (json_decode($dados[0]) as $key => $value)
-                            <th scope="col">{{ $key }}</th>
+                            @unless($key == 'created_at' || $key == 'updated_at')
+                                <th scope="col">{{ $key }}</th>
+                            @endunless
                         @endforeach
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($dados as $value)
-
-                        <tr onclick="location.href='/detalhe/{{$value->ID}}'">
+                        <tr onclick="location.href='{{ $caminhoDetalhe.$value->ID }}'">
 
                             @foreach (json_decode($value) as $key1 => $value1)
-                                <td>{{ $value1 }}</td>
+                                @unless($key1 == 'created_at' || $key1 == 'updated_at')
+                                    <td>{{ $value1 }}</td>
+                                @endunless
                             @endforeach
 
                         </tr>
