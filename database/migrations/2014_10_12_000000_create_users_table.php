@@ -20,6 +20,10 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            
+            $table->unsignedBigInteger('id_setor');
+            $table->foreign('id_setor')->references('id_setor')->on('setores')->onDelete('cascade')->onUpdate('cascade');
+
             $table->timestamps();
         });
     }
