@@ -16,9 +16,18 @@ class estoqueSeeder extends Seeder
     public function run()
     {
         DB::table('estoque')->insert([
-            'quantidade'=>1,
-            'minimo'=>0,
-            'id_produto'=>1
+            'quantidade'  => 1,
+            'minimo'      => 0,
+            'id_produto'  => 1,
+            'observacoes' => '',
+            'id_setor'    => 1
+        ]);
+        DB::table('estoque')->insert([
+            'quantidade'  => 10,
+            'minimo'      => 5,
+            'id_produto'  => 2,
+            'observacoes' => '',
+            'id_setor'    => 2
         ]);
     }
 }
