@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Fornecedor;
+use App\Models\Produto;
 use Illuminate\Http\Request;
 
 class FornecedorController extends Controller
@@ -24,15 +25,15 @@ class FornecedorController extends Controller
     }
 
     public function listaFornecedores($id){
-        $dados = Fornecedor::join('produtos', 'produtos.id_produto', '=', 'fornecedor.id_produto')
-        ->where('id_fornecedor', '=', $id)
+        $fornecedor = Fornecedor::find($id);
+        $dados = Produto::join('forneceProdutos', 'produtos.id_produto', '=', 'forneceProdutos.id_produto')
+        ->where('forneceProdutos.id_fornecedor', '=', $id)
         ->get([
             'produtos.id_produto as ID',
-            'fornecedor.nome as Nome',
-            'fornecedor.email as Email',
-            'fornecedor.telefone as Telefone'
+            'produtos.nome as Nome',
+            'produtos.observacoes as Observações'
         ]);
-        return view('lista', ['dados' => $dados, 'titulopadrao' => 'Fornecedores', 'caminhoDetalhe' => 'fornecedor/detalhe/']); 
+        return view('fornecedor/detalhe', ['dados' => $dados, 'fornecedor' => $fornecedor, 'titulopadrao' => 'Detalhes fornecedor', 'caminhoDetalhe' => '../../produto/detalhe/']); 
     }
 
     /**
