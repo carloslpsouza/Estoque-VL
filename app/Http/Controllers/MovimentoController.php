@@ -14,7 +14,19 @@ class MovimentoController extends Controller
      */
     public function index()
     {
-        //
+        $dados = Movimento::join('produtos', 'produtos.id_produto', '=', 'movimentos.id_produto')
+        ->join('users', 'users.id_user', '=', 'movimentos.id_user')
+        ->get([
+            'movimentos.id_movimento as ID',
+            'movimentos.tipo as Tipo',
+            'produtos.nome as Nome',
+            'movimentos.nota_fiscal as Nota fiscal',
+            'movimentos.numeroSerie as Número de série',
+            'movimentos.valor as Valor',
+            'movimentos.garantia as Garantia',
+            'users.name as Responsável'
+        ]);
+        return view('lista', ['dados' => $dados, 'titulopadrao' => 'Fornecedores', 'caminhoDetalhe' => 'fornecedor/detalhe/']); 
     }
 
     /**

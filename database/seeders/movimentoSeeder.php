@@ -18,10 +18,12 @@ class movimentoSeeder extends Seeder
         DB::table('movimentos')->insert([
             'tipo'=>0,
             'nota_fiscal'=>'NF0001',
+            'numeroSerie'=>'KJHG15245SD',
             'valor'=>1000.00,
             'garantia'=>365,
             'id_produto'=>1,
-            'id_user'=>1
+            'id_user'=>1,
+            'observacoes' => ''
         ]);
     }
 }
