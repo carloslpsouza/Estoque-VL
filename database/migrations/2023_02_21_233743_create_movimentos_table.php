@@ -17,8 +17,10 @@ return new class extends Migration
             $table->id('id_movimento');
             $table->integer('tipo');//0 entrada 1 saida
             $table->string('nota_fiscal');
+            $table->string('numeroSerie');
             $table->float('valor');
             $table->integer('garantia');//Salvar em dias
+            $table->text('observacoes');
 
             $table->unsignedBigInteger('id_produto');
             $table->foreign('id_produto')->references('id_produto')->on('produtos')->onDelete('cascade')->onUpdate('cascade');

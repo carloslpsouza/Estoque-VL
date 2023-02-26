@@ -17,9 +17,13 @@ return new class extends Migration
             $table->id('id_estoque');
             $table->float('quantidade');
             $table->float('minimo');
+            $table->text('observacoes');
 
             $table->unsignedBigInteger('id_produto');
             $table->foreign('id_produto')->references('id_produto')->on('produtos')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->unsignedBigInteger('id_setor');
+            $table->foreign('id_setor')->references('id_setor')->on('setores')->onDelete('cascade')->onUpdate('cascade');
             
             $table->timestamps();
         });
