@@ -16,16 +16,19 @@ class produtoSeeder extends Seeder
     public function run()
     {
         DB::table('produtos')->insert([
-            'nome'=>'Produto 01',
-            'id_categoria'=>1
+            'nome'=>'Conector macho RJ45 CAT 5e',
+            'id_categoria'=>1,
+            'observacoes' => ''
         ]);
         DB::table('produtos')->insert([
-            'nome'=>'Produto 02',
-            'id_categoria'=>2
+            'nome'=>'Placa de rede',
+            'id_categoria'=>2,
+            'observacoes' => ''
         ]);
         DB::table('produtos')->insert([
-            'nome'=>'Produto 03',
-            'id_categoria'=>3
+            'nome'=>'HD 4 TB',
+            'id_categoria'=>3,
+            'observacoes' => ''
         ]);
     }
 }
