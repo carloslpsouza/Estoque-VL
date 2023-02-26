@@ -18,6 +18,7 @@ class EstoqueController extends Controller
         $dados = Estoque::join('produtos', 'produtos.id_produto', '=', 'estoque.id_produto')
         ->get([
             'produtos.id_produto as ID',
+            'estoque.id_setor as Setor',
             'produtos.nome as Nome',
             'estoque.quantidade as Quantidade',
             'estoque.minimo as Mínimo'
