@@ -64,7 +64,8 @@ class MovimentoController extends Controller
      */
     public function show(Movimento $movimento)
     {
-        $movimento = Movimento::find($movimento);
+        $movimento = Movimento::findOrFail($movimento);
+        
         return $movimento;
     }
 
