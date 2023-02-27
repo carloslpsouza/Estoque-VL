@@ -48,7 +48,8 @@ class ProdutoController extends Controller
         'categorias.nome as nmc'
       ]);
     $fornecedores = new ForneceProdutoController;
-    return view('produto.detalhe', ['produto' => $produto, 'fornecedores' => $fornecedores->show($id)]);
+    $movimento = new MovimentoController;
+    return view('produto.detalhe', ['produto' => $produto, 'fornecedores' => $fornecedores->show($id), 'movimentopproduto' => $movimento->listaMovPProduto($id)]);
   }
 
   /**

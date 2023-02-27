@@ -29,6 +29,12 @@ class MovimentoController extends Controller
         return view('lista', ['dados' => $dados, 'titulopadrao' => 'Fornecedores', 'caminhoDetalhe' => 'fornecedor/detalhe/']); 
     }
 
+    public function listaMovPProduto($id_produto)
+    {
+        $dados = Movimento::all()->where('id_produto', '=', $id_produto);
+        return $dados;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -58,7 +64,8 @@ class MovimentoController extends Controller
      */
     public function show(Movimento $movimento)
     {
-        //
+        $movimento = Movimento::find($movimento);
+        return $movimento;
     }
 
     /**

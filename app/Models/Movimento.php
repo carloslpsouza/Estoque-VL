@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Movimento extends Model
 {
     use HasFactory;
+    protected $prymaryKey = 'id_movimento';
 }
