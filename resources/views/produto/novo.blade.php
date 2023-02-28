@@ -7,10 +7,10 @@
             <label for="nome">Nome</label>
             <input type="text" class="form-control" name='nome' id="nome">
             <label for="categoria">Categoria</label>
-            <select  class="form-control" name="categoria" id="categoria">
-                <option value=""></option>
+            <select class="form-select" name="categoria" id="categoria">
+                <option value="" selected="disabled">Selecionar</option>
                 @foreach ($categoria as $item)
-                <option value="{{$item->ID}}">{{$item->Nome}}</option>                    
+                    <option value="{{ $item->ID }}">{{ $item->Nome }}</option>
                 @endforeach
             </select>
             <label for="observacoes">Observações</label>
