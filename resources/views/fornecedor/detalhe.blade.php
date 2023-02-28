@@ -7,6 +7,7 @@
         <h5>Fornecedor: {{ $fornecedor->nome }}</h5>
         <p>E-mail: {{ $fornecedor->email }}</p>
         <p>Telefone: {{ $fornecedor->telefone }}</p>
+        <p>CNPJ: {{ $fornecedor->cnpj }}</p>
         <hr class="col-md-10">
         <h5>Produtos fornecidos:</h5>
         <div class="col-md-10">

@@ -18,6 +18,7 @@ class FornecedorController extends Controller
         $dados = Fornecedor::get([
             'id_fornecedor as ID',
             'nome as Nome',
+            'fornecedores.cnpj as CNPJ',
             'email as Email',
             'telefone as Telefone'
         ]);

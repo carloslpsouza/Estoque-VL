@@ -52,6 +52,7 @@ class ForneceProdutoController extends Controller
         ->get([
             'fornecedores.id_fornecedor',
             'fornecedores.nome as nmf',
+            'fornecedores.cnpj as CNPJ',
             'fornecedores.email'
         ]);
         return $fornecedores;
