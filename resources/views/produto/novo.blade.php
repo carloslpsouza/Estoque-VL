@@ -7,8 +7,8 @@
             <label for="nome">Nome</label>
             <input type="text" class="form-control" name='nome' id="nome">
             <label for="categoria">Categoria</label>
-            <select class="form-select" name="categoria" id="categoria">
-                <option value="" selected="disabled">Selecionar</option>
+            <select name="categorias" id="categorias" class="form-select form-select-lg mb-10">
+                <option selected></option>
                 @foreach ($categoria as $item)
                     <option value="{{ $item->ID }}">{{ $item->Nome }}</option>
                 @endforeach
@@ -19,5 +19,14 @@
         </div>
         <a href="/">voltar</a>
     </div>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+    <script type="text/javascript">
+        $("#categorias").select2({
+            placeholder: "Selecione a categoria",
+            allowClear: true
+        });
+    </script>
 
 @endsection
