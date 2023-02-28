@@ -49,6 +49,15 @@ class CategoriaController extends Controller
         //
     }
 
+    public function listaCategoria()
+    {
+        $categoria = Categoria::get([
+            'categorias.id_categoria as ID',
+            'categorias.nome as Nome'
+        ]);
+        return $categoria;
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

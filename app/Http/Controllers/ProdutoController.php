@@ -30,7 +30,12 @@ class ProdutoController extends Controller
         'produtos.nome as Nome',
         'categorias.nome as Categoria'
       ]);
-    return view('lista', ['dados' => $dados, 'titulopadrao' => 'Lista de produtos', 'caminhoDetalhe' => 'produto/detalhe/']);
+    return view('lista', [
+      'dados' => $dados, 
+      'titulopadrao'   => 'Lista de produtos', 
+      'caminhoDetalhe' => 'produto/detalhe/',
+      'novo'           => 'produto/cadastro'
+    ]);
   }
 
   /**
@@ -43,13 +48,17 @@ class ProdutoController extends Controller
     $produto = Produto::join('categorias', 'produtos.id_categoria', '=', 'categorias.id_categoria')
       ->where('id_produto', '=', $id)
       ->get([
-        'produtos.id_produto',
+        'produtos.id_produto as ID',
         'produtos.nome as nmp',
         'categorias.nome as nmc'
       ]);
     $fornecedores = new ForneceProdutoController;
     $movimento = new MovimentoController;
-    return view('produto.detalhe', ['produto' => $produto, 'fornecedores' => $fornecedores->show($id), 'movimentopproduto' => $movimento->listaMovPProduto($id)]);
+    return view('produto.detalhe', [
+      'produto' => $produto, 
+      'fornecedores' => $fornecedores->show($id), 
+      'movimentopproduto' => $movimento->listaMovPProduto($id)
+    ]);
   }
 
   /**
@@ -59,7 +68,11 @@ class ProdutoController extends Controller
    */
   public function create()
   {
-    //
+    $categoria = new CategoriaController;
+    return view('produto/novo', [
+      'titulopadrao' => 'Novo produto',
+      'categoria' => $categoria->listaCategoria()
+    ]);
   }
 
   /**
@@ -70,7 +83,14 @@ class ProdutoController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    $produto = new Produto;
+
+    $produto->nome         = $request->nome;
+    $produto->observacoes  = $request->observacoes;
+    $produto->id_categoria = $request->id_categoria;
+
+    //$produto->save();
+    return redirect('/')->witch('msg', 'Produto salvo com sucesso!');
   }
 
   /**
