@@ -89,8 +89,8 @@ class ProdutoController extends Controller
     $produto->observacoes  = $request->observacoes;
     $produto->id_categoria = $request->id_categoria;
 
-    //$produto->save();
-    return redirect('/')->witch('msg', 'Produto salvo com sucesso!');
+    $produto->save();
+    return redirect('/')->with('msg', 'Produto salvo com sucesso!');
   }
 
   /**
