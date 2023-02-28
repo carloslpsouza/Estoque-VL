@@ -31,6 +31,9 @@
             </table>
         </div>
         <a href="/">voltar</a>
+        @if ($novo)
+            <a href="{{$novo}}">Novo</a>            
+        @endif        
     </div>
 
 @endsection

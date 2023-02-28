@@ -22,7 +22,12 @@ class FornecedorController extends Controller
             'email as Email',
             'telefone as Telefone'
         ]);
-        return view('lista', ['dados' => $dados, 'titulopadrao' => 'Fornecedores', 'caminhoDetalhe' => 'fornecedor/detalhe/']); 
+        return view('lista', [
+            'dados' => $dados, 
+            'titulopadrao' => 'Fornecedores', 
+            'caminhoDetalhe' => 'fornecedor/detalhe/',
+            'novo'           => 'produto/cadastro'
+        ]); 
     }
 
     public function listaFornecedores($id){

@@ -26,7 +26,12 @@ class MovimentoController extends Controller
             'movimentos.garantia as Garantia',
             'users.name as Responsável'
         ]);
-        return view('lista', ['dados' => $dados, 'titulopadrao' => 'Fornecedores', 'caminhoDetalhe' => 'fornecedor/detalhe/']); 
+        return view('lista', [
+            'dados' => $dados, 
+            'titulopadrao' => 'Fornecedores', 
+            'caminhoDetalhe' => 'fornecedor/detalhe/',
+            'novo'           => 'produto/cadastro'
+        ]); 
     }
 
     public function listaMovPProduto($id_produto)
