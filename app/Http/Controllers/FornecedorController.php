@@ -67,7 +67,17 @@ class FornecedorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $fornecedor = new Fornecedor;
+
+        $fornecedor->nome          = $request->nome;
+        $fornecedor->email         = $request->email;
+        $fornecedor->cnpj          = $request->cnpj;
+        $fornecedor->telefone      = $request->telefone;
+        $fornecedor->observacoes   = $request->observacoes;
+
+        $fornecedor->save();
+
+        return redirect('/')->with('msg', 'Fornecedor salvo com sucesso!');
     }
 
     /**
