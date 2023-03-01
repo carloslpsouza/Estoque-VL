@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PrincipalController::class, 'index']);
 Route::get('lista', [ProdutoController::class, 'listaProdutos']);
 
-Route::get('produto/detalhe/{id}', [ProdutoController::class, 'detalheProduto']);
+Route::get('produto/detalhe/{id}', [ProdutoController::class, 'show']);
 Route::get('produto/cadastro', [ProdutoController::class, 'create']);
 Route::post('produto/save', [ProdutoController::class, 'store']);
 

@@ -31,33 +31,10 @@ class ProdutoController extends Controller
         'categorias.nome as Categoria'
       ]);
     return view('lista', [
-      'dados' => $dados, 
-      'titulopadrao'   => 'Lista de produtos', 
+      'dados' => $dados,
+      'titulopadrao'   => 'Lista de produtos',
       'caminhoDetalhe' => 'produto/detalhe/',
       'novo'           => 'produto/cadastro'
-    ]);
-  }
-
-  /**
-   * Display a listing of the resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function detalheProduto($id)
-  {
-    $produto = Produto::join('categorias', 'produtos.id_categoria', '=', 'categorias.id_categoria')
-      ->where('id_produto', '=', $id)
-      ->get([
-        'produtos.id_produto as ID',
-        'produtos.nome as nmp',
-        'categorias.nome as nmc'
-      ]);
-    $fornecedores = new ForneceProdutoController;
-    $movimento = new MovimentoController;
-    return view('produto.detalhe', [
-      'produto' => $produto, 
-      'fornecedores' => $fornecedores->show($id), 
-      'movimentopproduto' => $movimento->listaMovPProduto($id)
     ]);
   }
 
@@ -99,9 +76,22 @@ class ProdutoController extends Controller
    * @param  \App\Models\Produto  $produto
    * @return \Illuminate\Http\Response
    */
-  public function show(Produto $produto)
+  public function show($id)
   {
-    //
+    $produto = Produto::join('categorias', 'produtos.id_categoria', '=', 'categorias.id_categoria')
+      ->where('id_produto', '=', $id)
+      ->get([
+        'produtos.id_produto as ID',
+        'produtos.nome as nmp',
+        'categorias.nome as nmc'
+      ]);
+    $fornecedores = new ForneceProdutoController;
+    $movimento = new MovimentoController;
+    return view('produto.detalhe', [
+      'produto' => $produto,
+      'fornecedores' => $fornecedores->show($id),
+      'movimentopproduto' => $movimento->listaMovPProduto($id)
+    ]);
   }
 
   /**
