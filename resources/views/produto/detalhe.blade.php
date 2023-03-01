@@ -1,16 +1,16 @@
 @extends('layouts.main')
 @php
-    $titulopadrao = 'Detalhe Produtos';
+    $titulopadrao = 'Detalhes do produto';
 @endphp
 
 @section('title', $titulopadrao)
 @section('content')
     <div id="produtos-conteiner" class="col-md-12 offset-md-1">
-        <h4>{{ $titulopadrao }}</h4>
+        <h5>{{ $titulopadrao }}</h5>
         <hr>
         <div class="col-md-10">
             <p>ID: {{ $produto[0]->id_produto }} Categoria: {{ $produto[0]->nmc }}</p>
-            <h4>Fornecedores: </h4>
+            <h5>Fornecedores: </h5>
             <hr>
             @if (count($fornecedores) > 0)
                 <div class="list-group">

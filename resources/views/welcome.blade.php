@@ -2,7 +2,7 @@
 @section('title', 'Welcome')
 @section('content')
 <div id="produtos-conteiner" class="col-md-10 offset-md-1">
-    <h3>Estoque - 1.0</h3>
+    <h3>Estoque VL - 1.0</h3>
     <h4>Painel</h4>
     <div class="list-group">
         <a href="/lista" class="list-group-item d-flex justify-content-between align-items-center">
@@ -17,7 +17,7 @@
             Fornecedores
             <span class="badge bg-primary rounded-pill">{{$contadores['qtdeFornecedores']}}</span>
         </a>
-        <a href="/movimentos" class="list-group-item d-flex justify-content-between align-items-center">
+        <a href="/emFalta" class="list-group-item d-flex justify-content-between align-items-center">
             Faltando
             <span class="badge bg-primary rounded-pill">0</span>
         </a>

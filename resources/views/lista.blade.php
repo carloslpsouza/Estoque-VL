@@ -2,10 +2,11 @@
 @section('title', $titulopadrao)
 @section('content')
     <div id="produtos-conteiner" class="col-md-12 offset-md-1">
-        <h3>{{ $titulopadrao }}</h3>
+        <h5>{{ $titulopadrao }}</h5><hr>
         <div class="col-md-10">
             <table class="table table-hover">
                 
+                @if (count($dados) > 0)
                 <thead>
                     <tr>
                         @foreach (json_decode($dados[0]) as $key => $value)
@@ -28,6 +29,10 @@
                         </tr>
                     @endforeach
                 </tbody>
+                    
+                @else
+                    <p>Não foram encontrados produtos em falta</p>
+                @endif 
             </table>
         </div>
         <a href="/">voltar</a>

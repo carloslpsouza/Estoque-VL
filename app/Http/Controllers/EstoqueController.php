@@ -27,7 +27,7 @@ class EstoqueController extends Controller
             'dados'          => $dados, 
             'titulopadrao'   => 'Estoque', 
             'caminhoDetalhe' => 'estoque/detalhe/',
-            'novo'           => 'estoque/cadastro']);        
+            'novo'           => false]);        
     }
 
     /**
@@ -94,5 +94,29 @@ class EstoqueController extends Controller
     public function destroy(estoque $estoque)
     {
         //
+    }
+
+        /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\estoque  $estoque
+     * @return \Illuminate\Http\Response
+     */
+    public function inFault()
+    {
+        $dados = estoque::join('produtos', 'produtos.id_produto', '=', 'estoque.id_produto')
+        ->where('quantidade', '>', 'minimo')
+        ->get([
+            'produtos.id_produto as ID',
+            'produtos.nome as Nome',
+            'estoque.quantidade as Atual',
+            'estoque.minimo as Mínimo'
+        ]);
+        return view('lista', [
+            'dados'          => $dados,
+            'titulopadrao'   => 'Material em falta',
+            'caminhoDetalhe' => 'produto/detalhe/',
+            'novo'           => false
+        ]);
     }
 }
