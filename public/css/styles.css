@@ -1,0 +1,11 @@
+#produtos-conteiner{
+  width: 90vw;
+}
+.msg{
+  background-color: #D4EDDA;
+  color: #155724;
+  width: 100%;
+  margin-bottom: 0;
+  text-align: center;
+  padding: 10px;
+}
