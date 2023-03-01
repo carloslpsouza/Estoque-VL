@@ -20,10 +20,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PrincipalController::class, 'index']);
 Route::get('lista', [ProdutoController::class, 'listaProdutos']);
+
 Route::get('produto/detalhe/{id}', [ProdutoController::class, 'detalheProduto']);
 Route::get('produto/cadastro', [ProdutoController::class, 'create']);
 Route::post('produto/save', [ProdutoController::class, 'store']);
+
 Route::get('fornecedores', [FornecedorController::class, 'index']);
+Route::get('fornecedor/cadastro', [FornecedorController::class, 'create']);
 Route::get('fornecedor/detalhe/{id}', [FornecedorController::class, 'listaFornecedores']);
+
 Route::get('estoque', [EstoqueController::class, 'index']);
 Route::get('movimentos', [MovimentoController::class, 'index']);

@@ -26,7 +26,7 @@ class FornecedorController extends Controller
             'dados' => $dados, 
             'titulopadrao' => 'Fornecedores', 
             'caminhoDetalhe' => 'fornecedor/detalhe/',
-            'novo'           => 'produto/cadastro'
+            'novo'           => 'fornecedor/cadastro'
         ]); 
     }
 
@@ -39,7 +39,12 @@ class FornecedorController extends Controller
             'produtos.nome as Nome',
             'produtos.observacoes as Observações'
         ]);
-        return view('fornecedor/detalhe', ['dados' => $dados, 'fornecedor' => $fornecedor, 'titulopadrao' => 'Detalhes fornecedor', 'caminhoDetalhe' => '../../produto/detalhe/']); 
+        return view('fornecedor/detalhe', [
+            'dados'          => $dados, 
+            'fornecedor'     => $fornecedor, 
+            'titulopadrao'   => 'Detalhes fornecedor', 
+            'caminhoDetalhe' => '../../produto/detalhe/'
+        ]); 
     }
 
     /**
@@ -49,7 +54,9 @@ class FornecedorController extends Controller
      */
     public function create()
     {
-        //
+        return view('fornecedor/novo',[
+            'titulopadrao' => 'Novo Fornecedor'
+        ]);
     }
 
     /**
