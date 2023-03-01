@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('email');
             $table->string('telefone');
             $table->string('cnpj')->unique();
-            $table->text('observacoes');
+            $table->text('observacoes')->nullable();
+            $table->timestamps();
         });
     }
 

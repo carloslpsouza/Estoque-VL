@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('numeroSerie');
             $table->float('valor');
             $table->integer('garantia');//Salvar em dias
-            $table->text('observacoes');
+            $table->text('observacoes')->nullable();
 
             $table->unsignedBigInteger('id_produto');
             $table->foreign('id_produto')->references('id_produto')->on('produtos')->onDelete('cascade')->onUpdate('cascade');

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('id_estoque');
             $table->float('quantidade');
             $table->float('minimo');
-            $table->text('observacoes');
+            $table->text('observacoes')->nullable();
 
             $table->unsignedBigInteger('id_produto');
             $table->foreign('id_produto')->references('id_produto')->on('produtos')->onDelete('cascade')->onUpdate('cascade');
