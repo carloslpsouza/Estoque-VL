@@ -31,5 +31,5 @@ Route::get('fornecedor/detalhe/{id}', [FornecedorController::class, 'listaFornec
 Route::post('fornecedor/save', [FornecedorController::class, 'store']);
 
 Route::get('estoque', [EstoqueController::class, 'index']);
-Route::get('emFalta', [EstoqueController::class, 'inFault']);
+Route::get('emfalta', [EstoqueController::class, 'inFault']);
 Route::get('movimentos', [MovimentoController::class, 'index']);

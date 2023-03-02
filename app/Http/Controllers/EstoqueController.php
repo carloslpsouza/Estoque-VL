@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\estoque;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EstoqueController extends Controller
 {
@@ -104,15 +105,16 @@ class EstoqueController extends Controller
      */
     public function inFault()
     {
-        $dados = estoque::join('produtos', 'produtos.id_produto', '=', 'estoque.id_produto')
-        ->where('quantidade', '>', 'minimo')
+        $dados = DB::select('SELECT produtos.id_produto as ID, produtos.nome as Nome, estoque.quantidade as Atual, estoque.minimo as Mínimo FROM estoque JOIN produtos ON estoque.id_produto = produtos.id_produto WHERE estoque.quantidade < estoque.minimo');
+        /*$dados = estoque::join('produtos', 'produtos.id_produto', '=', 'estoque.id_produto')
+        ->where('estoque.quantidade','<','estoque.minimo')
         ->get([
             'produtos.id_produto as ID',
             'produtos.nome as Nome',
             'estoque.quantidade as Atual',
             'estoque.minimo as Mínimo'
-        ]);
-        return view('lista', [
+        ]); */
+        return view('estoque/emfalta', [
             'dados'          => $dados,
             'titulopadrao'   => 'Material em falta',
             'caminhoDetalhe' => 'produto/detalhe/',

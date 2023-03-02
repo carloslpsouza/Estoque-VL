@@ -17,7 +17,7 @@
             Fornecedores
             <span class="badge bg-primary rounded-pill">{{$contadores['qtdeFornecedores']}}</span>
         </a>
-        <a href="/emFalta" class="list-group-item d-flex justify-content-between align-items-center">
+        <a href="/emfalta" class="list-group-item d-flex justify-content-between align-items-center">
             Faltando
             <span class="badge bg-primary rounded-pill">0</span>
         </a>
