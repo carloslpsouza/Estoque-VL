@@ -18,7 +18,7 @@
         </a>
         <a href="/emfalta" class="list-group-item d-flex justify-content-between align-items-center">
             Faltando
-            <span class="badge bg-primary rounded-pill">0</span>
+            <span class="badge bg-primary rounded-pill">{{$contadores['qtdeEmFalta']}}</span>
         </a>
         <a href="/movimentos" class="list-group-item d-flex justify-content-between align-items-center">
             Movimentos

@@ -22,11 +22,13 @@ class PrincipalController extends Controller
         //$qtdeEstoque    = estoque::all()->where('id_setor', '=', user.id_setor)->count();
         $qtdeFornecedores = Fornecedor::all()->count();
         $qtdeMovimentos   = Movimento::all()->count();
+        $qtdeEmFalta      = new EstoqueController;
         $contadores = [
             'qtdeProdutos'     => $qtdeProdutos, 
             'qtdeEstoque'      => $qtdeEstoque, 
             'qtdeFornecedores' => $qtdeFornecedores,
-            'qtdeMovimentos'   => $qtdeMovimentos
+            'qtdeMovimentos'   => $qtdeMovimentos,
+            'qtdeEmFalta'      => $qtdeEmFalta->inFaultCount()
         ];
         return view('welcome', ['contadores' => $contadores]);
     }

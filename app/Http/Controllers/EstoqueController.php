@@ -121,4 +121,23 @@ class EstoqueController extends Controller
             'novo'           => false
         ]);
     }
+            /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\estoque  $estoque
+     * @return \Illuminate\Http\Response
+     */
+    public function inFaultCount()
+    {
+        $dados = DB::select('SELECT produtos.id_produto as ID, produtos.nome as Nome, estoque.quantidade as Atual, estoque.minimo as Mínimo FROM estoque JOIN produtos ON estoque.id_produto = produtos.id_produto WHERE estoque.quantidade < estoque.minimo');
+        /*$dados = estoque::join('produtos', 'produtos.id_produto', '=', 'estoque.id_produto')
+        ->where('estoque.quantidade','<','estoque.minimo')
+        ->get([
+            'produtos.id_produto as ID',
+            'produtos.nome as Nome',
+            'estoque.quantidade as Atual',
+            'estoque.minimo as Mínimo'
+        ]); */
+        return count($dados);
+    }
 }
