@@ -44,7 +44,8 @@
                     d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z" />
             </symbol>
             <symbol id="market" viewBox="0 0 16 16">
-                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                <path
+                    d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
             </symbol>
         </svg>
 
@@ -60,17 +61,13 @@
                 <ul class="list-unstyled ps-0">
                     <li class="mb-1">
                         <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                            data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+                            data-bs-toggle="collapse" data-bs-target="#produto-collapse" aria-expanded="false">
                             Produtos
                         </button>
-                        <div class="collapse show" id="home-collapse">
+                        <div class="collapse" id="produto-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li><a href="/produto/cadastro"
                                         class="link-dark d-inline-flex text-decoration-none rounded">Cadastrar</a></li>
-                                <li><a href="#"
-                                        class="link-dark d-inline-flex text-decoration-none rounded">Retirar</a></li>
-                                <li><a href="#"
-                                        class="link-dark d-inline-flex text-decoration-none rounded">Devolver</a></li>
                                 <li><a href="/lista"
                                         class="link-dark d-inline-flex text-decoration-none rounded">Listar</a></li>
                             </ul>
@@ -78,10 +75,10 @@
                     </li>
                     <li class="mb-1">
                         <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                            data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                            data-bs-toggle="collapse" data-bs-target="#fornecedor-collapse" aria-expanded="false">
                             Fornecedores
                         </button>
-                        <div class="collapse" id="dashboard-collapse">
+                        <div class="collapse" id="fornecedor-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li><a href="/fornecedor/cadastro"
                                         class="link-dark d-inline-flex text-decoration-none rounded">Cadastrar</a></li>
@@ -90,6 +87,39 @@
                                 <li>
                             </ul>
                         </div>
+                    </li>
+                    <li class="mb-1">
+                        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                            data-bs-toggle="collapse" data-bs-target="#mov-collapse" aria-expanded="true">
+                            Estoque
+                        </button>
+                        <div class="collapse show" id="mov-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="/emfalta" class="link-dark d-inline-flex text-decoration-none rounded">Em
+                                        falta</a></li>
+                                <li><a href="/estoque"
+                                        class="link-dark d-inline-flex text-decoration-none rounded">Listar</a></li>
+                            </ul>
+                        </div>
+                    <li class="mb-1">
+                        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                            data-bs-toggle="collapse" data-bs-target="#movimentos-collapse" aria-expanded="false">
+                            Movimentos
+                        </button>
+                        <div class="collapse" id="movimentos-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="#"
+                                        class="link-dark d-inline-flex text-decoration-none rounded">Entrada</a></li>
+                                <li><a href="#"
+                                        class="link-dark d-inline-flex text-decoration-none rounded">Saída</a></li>
+                                <li><a href="#"
+                                        class="link-dark d-inline-flex text-decoration-none rounded">Devolução</a></li>
+                                <li><a href="/movimentos"
+                                        class="link-dark d-inline-flex text-decoration-none rounded">Listar</a></li>
+                                <li>
+                            </ul>
+                        </div>
+                    </li>
                     </li>
                     <li class="border-top my-3"></li>
                     <li class="mb-1">
@@ -100,7 +130,8 @@
                         <div class="collapse" id="account-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li><a href="#"
-                                        class="link-dark d-inline-flex text-decoration-none rounded">Sign out</a></li>
+                                        class="link-dark d-inline-flex text-decoration-none rounded">Sign
+                                        out</a></li>
                             </ul>
                         </div>
                     </li>
