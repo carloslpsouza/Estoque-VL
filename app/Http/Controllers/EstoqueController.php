@@ -22,7 +22,7 @@ class EstoqueController extends Controller
             'estoque.id_setor as Setor',
             'produtos.nome as Nome',
             'estoque.quantidade as Quantidade',
-            'estoque.minimo as Mínimo'
+            'produtos.minimo as Mínimo'
         ]);
         return view('lista', [
             'dados'          => $dados, 
@@ -105,7 +105,7 @@ class EstoqueController extends Controller
      */
     public function inFault()
     {
-        $dados = DB::select('SELECT produtos.id_produto as ID, produtos.nome as Nome, estoque.quantidade as Atual, estoque.minimo as Mínimo FROM estoque JOIN produtos ON estoque.id_produto = produtos.id_produto WHERE estoque.quantidade < estoque.minimo');
+        $dados = DB::select('SELECT produtos.id_produto as ID, produtos.nome as Nome, estoque.quantidade as Atual, produtos.minimo as Mínimo FROM estoque JOIN produtos ON estoque.id_produto = produtos.id_produto WHERE estoque.quantidade < produtos.minimo');
         /*$dados = estoque::join('produtos', 'produtos.id_produto', '=', 'estoque.id_produto')
         ->where('estoque.quantidade','<','estoque.minimo')
         ->get([
@@ -129,7 +129,7 @@ class EstoqueController extends Controller
      */
     public function inFaultCount()
     {
-        $dados = DB::select('SELECT produtos.id_produto as ID, produtos.nome as Nome, estoque.quantidade as Atual, estoque.minimo as Mínimo FROM estoque JOIN produtos ON estoque.id_produto = produtos.id_produto WHERE estoque.quantidade < estoque.minimo');
+        $dados = DB::select('SELECT produtos.id_produto as ID, produtos.nome as Nome, estoque.quantidade as Atual, produtos.minimo as Mínimo FROM estoque JOIN produtos ON estoque.id_produto = produtos.id_produto WHERE estoque.quantidade < produtos.minimo');
         /*$dados = estoque::join('produtos', 'produtos.id_produto', '=', 'estoque.id_produto')
         ->where('estoque.quantidade','<','estoque.minimo')
         ->get([

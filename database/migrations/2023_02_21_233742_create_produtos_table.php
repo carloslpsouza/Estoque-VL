@@ -17,6 +17,7 @@ return new class extends Migration
       $table->id('id_produto');
       $table->string('nome');
       $table->text('observacoes')->nullable();
+      $table->float('minimo');
 
       $table->unsignedBigInteger('id_categoria');
       $table->foreign('id_categoria')->references('id_categoria')->on('categorias')->onDelete('cascade')->onUpdate('cascade');

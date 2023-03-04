@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('estoque', function (Blueprint $table) {
             $table->id('id_estoque');
             $table->float('quantidade');
-            $table->float('minimo');
             $table->text('observacoes')->nullable();
 
             $table->unsignedBigInteger('id_produto');

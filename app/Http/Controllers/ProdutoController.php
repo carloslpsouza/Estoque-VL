@@ -28,6 +28,7 @@ class ProdutoController extends Controller
       ->get([
         'produtos.id_produto as ID',
         'produtos.nome as Nome',
+        'produtos.minimo as Mínimo',
         'categorias.nome as Categoria'
       ]);
     return view('lista', [
@@ -83,7 +84,8 @@ class ProdutoController extends Controller
       ->get([
         'produtos.id_produto as ID',
         'produtos.nome as nmp',
-        'categorias.nome as nmc'
+        'produtos.minimo as Mínimo',
+        'categorias.nome as nmc',
       ]);
     $fornecedores = new ForneceProdutoController;
     $movimento = new MovimentoController;
