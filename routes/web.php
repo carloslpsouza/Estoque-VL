@@ -27,9 +27,10 @@ Route::post('produto/save', [ProdutoController::class, 'store']);
 
 Route::get('fornecedores', [FornecedorController::class, 'index']);
 Route::get('fornecedor/cadastro', [FornecedorController::class, 'create']);
-Route::get('fornecedor/detalhe/{id}', [FornecedorController::class, 'listaFornecedores']);
+Route::get('fornecedor/detalhe/{id}', [FornecedorController::class, 'show']);
 Route::post('fornecedor/save', [FornecedorController::class, 'store']);
 
 Route::get('estoque', [EstoqueController::class, 'index']);
 Route::get('emfalta', [EstoqueController::class, 'inFault']);
 Route::get('movimentos', [MovimentoController::class, 'index']);
+Route::get('/estoque/entrada', [MovimentoController::class, 'create']);

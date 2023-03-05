@@ -28,7 +28,7 @@ class MovimentoController extends Controller
         ]);
         return view('lista', [
             'dados' => $dados, 
-            'titulopadrao' => 'Fornecedores', 
+            'titulopadrao'   => 'Fornecedores', 
             'caminhoDetalhe' => 'fornecedor/detalhe/',
             'novo'           => 'produto/cadastro'
         ]); 
@@ -47,7 +47,13 @@ class MovimentoController extends Controller
      */
     public function create()
     {
-        //
+        $fornecedores = new FornecedorController;
+        return view('/estoque/entrada', [
+            'titulopadrao'   => 'Registro de produtos',
+            'caminhoDetalhe' => '#',
+            'novo'           => '#',
+            'fornecedores'     => $fornecedores->listaFornecedores()
+        ]);
     }
 
     /**

@@ -108,7 +108,7 @@
                         </button>
                         <div class="collapse" id="movimentos-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="#"
+                                <li><a href="/estoque/entrada"
                                         class="link-dark d-inline-flex text-decoration-none rounded">Entrada</a></li>
                                 <li><a href="#"
                                         class="link-dark d-inline-flex text-decoration-none rounded">Saída</a></li>

@@ -23,28 +23,21 @@ class FornecedorController extends Controller
             'telefone as Telefone'
         ]);
         return view('lista', [
-            'dados' => $dados, 
-            'titulopadrao' => 'Fornecedores', 
+            'dados' => $dados,
+            'titulopadrao' => 'Fornecedores',
             'caminhoDetalhe' => 'fornecedor/detalhe/',
             'novo'           => 'fornecedor/cadastro'
-        ]); 
+        ]);
     }
 
-    public function listaFornecedores($id){
-        $fornecedor = Fornecedor::find($id);
-        $dados = Produto::join('forneceProdutos', 'produtos.id_produto', '=', 'forneceProdutos.id_produto')
-        ->where('forneceProdutos.id_fornecedor', '=', $id)
-        ->get([
-            'produtos.id_produto as ID',
-            'produtos.nome as Nome',
-            'produtos.observacoes as Observações'
+    public function listaFornecedores()
+    {
+        $fornecedores = Fornecedor::get([
+            'id_fornecedor as ID',
+            'nome as Nome',
+            'cnpj'
         ]);
-        return view('fornecedor/detalhe', [
-            'dados'          => $dados, 
-            'fornecedor'     => $fornecedor, 
-            'titulopadrao'   => 'Detalhes fornecedor', 
-            'caminhoDetalhe' => '../../produto/detalhe/'
-        ]); 
+        return $fornecedores;
     }
 
     /**
@@ -54,7 +47,7 @@ class FornecedorController extends Controller
      */
     public function create()
     {
-        return view('fornecedor/novo',[
+        return view('fornecedor/novo', [
             'titulopadrao' => 'Novo Fornecedor'
         ]);
     }
@@ -86,9 +79,22 @@ class FornecedorController extends Controller
      * @param  \App\Models\Fornecedor  $fornecedor
      * @return \Illuminate\Http\Response
      */
-    public function show(Fornecedor $fornecedor)
+    public function show($id)
     {
-        //
+        $fornecedor = Fornecedor::find($id);
+        $dados = Produto::join('forneceProdutos', 'produtos.id_produto', '=', 'forneceProdutos.id_produto')
+            ->where('forneceProdutos.id_fornecedor', '=', $id)
+            ->get([
+                'produtos.id_produto as ID',
+                'produtos.nome as Nome',
+                'produtos.observacoes as Observações'
+            ]);
+        return view('fornecedor/detalhe', [
+            'dados'          => $dados,
+            'fornecedor'     => $fornecedor,
+            'titulopadrao'   => 'Detalhes fornecedor',
+            'caminhoDetalhe' => '../../produto/detalhe/'
+        ]);
     }
 
     /**
