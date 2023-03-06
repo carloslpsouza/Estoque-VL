@@ -4,7 +4,7 @@
     <div id="produtos-conteiner" class="col-md-12 offset-md-1">
         <h3>{{ $titulopadrao }}</h3>
         <div class="col-md-10">
-            <form action="save" method="POST">
+            <form action="/movimento/save" method="POST">
                 @csrf
                 <label for="nome">Nota Fiscal</label>
                 <input type="text" class="form-control" name='nota_fiscal' id="notafiscal" value="{{ old('notafiscal') }}">

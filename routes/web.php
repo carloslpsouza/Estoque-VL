@@ -34,3 +34,4 @@ Route::get('estoque', [EstoqueController::class, 'index']);
 Route::get('emfalta', [EstoqueController::class, 'inFault']);
 Route::get('movimentos', [MovimentoController::class, 'index']);
 Route::get('/estoque/entrada', [MovimentoController::class, 'create']);
+Route::post('/movimento/save', [MovimentoController::class, 'store']);
