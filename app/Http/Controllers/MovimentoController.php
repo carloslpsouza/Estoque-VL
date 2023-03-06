@@ -64,7 +64,8 @@ class MovimentoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $teste = $request;
+        return view('teste', ['teste' => $teste]);
     }
 
     /**
