@@ -14,12 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('movimentos', function (Blueprint $table) {
-            $table->id('id_movimento');
-            $table->integer('tipo');//0 entrada 1 saida
-            $table->string('nota_fiscal');
+            $table->id('id_movimento');            
+            $table->float('quantidade');            
             $table->string('numeroSerie');
-            $table->float('valor');
-            $table->integer('garantia');//Salvar em dias
             $table->text('observacoes')->nullable();
 
             $table->unsignedBigInteger('id_produto');

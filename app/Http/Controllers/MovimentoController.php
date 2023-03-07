@@ -16,21 +16,22 @@ class MovimentoController extends Controller
     {
         $dados = Movimento::join('produtos', 'produtos.id_produto', '=', 'movimentos.id_produto')
         ->join('users', 'users.id_user', '=', 'movimentos.id_user')
+        ->join('entradas', 'movimentos.id_movimento', '=', 'entradas.id_movimento')
         ->get([
             'movimentos.id_movimento as ID',
-            'movimentos.tipo as Tipo',
+            'movimentos.quantidade as QTY',
             'produtos.nome as Nome',
-            'movimentos.nota_fiscal as Nota fiscal',
-            'movimentos.numeroSerie as Número de série',
-            'movimentos.valor as Valor',
-            'movimentos.garantia as Garantia',
+            'entradas.nota_fiscal as NF',
+            'movimentos.numeroSerie as N. de série',
+            'entradas.valor as Valor',
+            'entradas.garantia as Garantia',
             'users.name as Responsável'
         ]);
         return view('lista', [
             'dados' => $dados, 
-            'titulopadrao'   => 'Fornecedores', 
-            'caminhoDetalhe' => 'fornecedor/detalhe/',
-            'novo'           => 'produto/cadastro'
+            'titulopadrao'   => 'Movimentos', 
+            'caminhoDetalhe' => 'movimento/detalhe/',
+            'novo'           => 'movimento/cadastro'
         ]); 
     }
 
@@ -64,8 +65,10 @@ class MovimentoController extends Controller
      */
     public function store(Request $request)
     {
-        $teste = $request;
-        return view('teste', ['teste' => $teste]);
+        $temp=[];
+        foreach($request as $item)
+            array_push($temp, $request->nota_fiscal, $request->valor);
+        return view('teste', ['teste' => $temp]);
     }
 
     /**
