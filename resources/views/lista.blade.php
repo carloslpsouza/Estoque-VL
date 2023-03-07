@@ -31,7 +31,7 @@
                 </tbody>
                     
                 @else
-                    <p>Não foram encontrados produtos em falta</p>
+                    <p>Não foram encontrados {{$titulopadrao}}</p>
                 @endif 
             </table>
         </div>
