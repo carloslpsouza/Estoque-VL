@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             movimentoSeeder::class,
             estoqueSeeder::class,
             forneceProdutoSeeder::class,
+            entradaSeeder::class
         ]);
     }
 }
