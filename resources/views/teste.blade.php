@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('title', 'Welcome')
 @section('content')
-@php
-    dd($teste)
-@endphp
+@foreach ($teste as $item)
+    <p>{{var_dump($item)}}</p>
+@endforeach
 @endsection
