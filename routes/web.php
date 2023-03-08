@@ -4,6 +4,7 @@ use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\EstoqueController;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\MovimentoController;
+use App\Http\Controllers\EntradaController;
 use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Route;
 
