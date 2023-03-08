@@ -17,18 +17,21 @@ class produtoSeeder extends Seeder
     {
         DB::table('produtos')->insert([
             'nome'=>'Conector macho RJ45 CAT 5e',
+            'imagem'       => '',
             'id_categoria' => 1,
             'observacoes'  => '',
             'minimo'       => 5
         ]);
         DB::table('produtos')->insert([
             'nome'=>'Placa de rede',
+            'imagem'       => '',
             'id_categoria' => 2,
             'observacoes'  => '',
             'minimo'       => 5
         ]);
         DB::table('produtos')->insert([
             'nome'=>'HD 4 TB',
+            'imagem'       => '',
             'id_categoria' => 3,
             'observacoes'  => '',
             'minimo'       => 5
