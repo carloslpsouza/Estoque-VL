@@ -2,6 +2,6 @@
 @section('title', 'Welcome')
 @section('content')
 @foreach ($teste as $item)
-    <p>{{var_dump($item)}}</p>
+    <p>{{dd($teste)}}</p>
 @endforeach
 @endsection

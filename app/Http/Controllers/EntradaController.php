@@ -14,7 +14,13 @@ class EntradaController extends Controller
      */
     public function index()
     {
-        //
+        $fornecedores = new FornecedorController;
+        return view('/estoque/entrada', [
+            'titulopadrao'   => 'Enrtrada de produtos',
+            'caminhoDetalhe' => '#',
+            'novo'           => '#',
+            'fornecedores'     => $fornecedores->listaFornecedores()
+        ]);
     }
 
     /**
@@ -24,7 +30,13 @@ class EntradaController extends Controller
      */
     public function create()
     {
-        //
+        $fornecedores = new FornecedorController;
+        return view('/estoque/entrada', [
+            'titulopadrao'   => 'Enrtrada de produtos',
+            'caminhoDetalhe' => '#',
+            'novo'           => '#',
+            'fornecedores'     => $fornecedores->listaFornecedores()
+        ]);
     }
 
     /**
@@ -35,7 +47,19 @@ class EntradaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $entrada = new entrada();        
+        for($i = 0; $i < count($request->nome); $i ++)
+            $entrada->nota_fiscal    = $request->nota_fiscal;
+            $entrada->quantidade     = $request->quantidade[$i];
+            $entrada->numeroserie    = $request->numeroSerie[$i];
+            $entrada->valor          = $request->valor[$i];
+            $entrada->garantia       = $request->garantia[$i];
+            $entrada->observacoes    = $request->observacoes[$i];
+            $entrada->id_produto     = $request->id_produto;
+            $entrada->id_user        = $request->id_user;
+            $entrada->id_fornecedor  = $request->id_fornecedor;
+        
+        return view('teste', ['teste' => 0]);
     }
 
     /**

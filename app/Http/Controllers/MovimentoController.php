@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\entrada;
 use App\Models\Movimento;
+use App\Models\Produto;
 use Illuminate\Http\Request;
 
 class MovimentoController extends Controller
@@ -16,15 +18,11 @@ class MovimentoController extends Controller
     {
         $dados = Movimento::join('produtos', 'produtos.id_produto', '=', 'movimentos.id_produto')
         ->join('users', 'users.id_user', '=', 'movimentos.id_user')
-        ->join('entradas', 'movimentos.id_movimento', '=', 'entradas.id_movimento')
         ->get([
             'movimentos.id_movimento as ID',
             'movimentos.quantidade as QTY',
             'produtos.nome as Nome',
-            'entradas.nota_fiscal as NF',
             'movimentos.numeroSerie as N. de série',
-            'entradas.valor as Valor',
-            'entradas.garantia as Garantia',
             'users.name as Responsável'
         ]);
         return view('lista', [
@@ -48,13 +46,7 @@ class MovimentoController extends Controller
      */
     public function create()
     {
-        $fornecedores = new FornecedorController;
-        return view('/estoque/entrada', [
-            'titulopadrao'   => 'Registro de produtos',
-            'caminhoDetalhe' => '#',
-            'novo'           => '#',
-            'fornecedores'     => $fornecedores->listaFornecedores()
-        ]);
+        //
     }
 
     /**
@@ -65,10 +57,7 @@ class MovimentoController extends Controller
      */
     public function store(Request $request)
     {
-        $temp=[];
-        foreach($request as $item)
-            array_push($temp, $request->nota_fiscal, $request->valor);
-        return view('teste', ['teste' => $temp]);
+        //
     }
 
     /**

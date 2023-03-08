@@ -18,8 +18,6 @@
                 </select>
                 <hr>
 
-
-
                 <div class="row">
                     <div class="form-group multiple-form-group input-group campos_entrada">
                         <div class="input-group-btn input-group-select">

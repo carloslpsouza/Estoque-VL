@@ -17,9 +17,14 @@ class entradaSeeder extends Seeder
     {
         DB::table('entradas')->insert([
             'nota_fiscal'  => 'NF001',
+            'quantidade'   => 1.00,
+            'numeroSerie'  => 'AWX098RT1000',
             'valor'        => 1000.00,
             'garantia'     => 365,
-            'id_movimento' => 1
+            'observacoes'  => '',
+            'id_produto'   => 1,
+            'id_user'      => 1,
+            'id_fornecedor'=> 1
         ]);       
     }
 }
