@@ -16,7 +16,7 @@ class EntradaController extends Controller
     {
         $fornecedores = new FornecedorController;
         return view('/estoque/entrada', [
-            'titulopadrao'   => 'Enrtrada de produtos',
+            'titulopadrao'   => 'Entrada de produtos',
             'caminhoDetalhe' => '#',
             'novo'           => '#',
             'fornecedores'     => $fornecedores->listaFornecedores()
