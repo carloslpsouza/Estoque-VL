@@ -16,6 +16,7 @@ return new class extends Migration
     Schema::create('produtos', function (Blueprint $table) {
       $table->id('id_produto');
       $table->string('nome');
+      $table->string('imagem');
       $table->text('observacoes')->nullable();
       $table->float('minimo');
 
