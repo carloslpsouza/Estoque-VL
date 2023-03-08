@@ -34,7 +34,7 @@
                             <input type="text" class="form-control" name='observacoes[]' id="observacoes"
                                 value="{{ old('observacoes') }}" placeholder="observações">
                             <span class="input-group-btn">
-                                <button type="button" class="btn btn-success btn-add">+</button>
+                                <button type="button" class="btn btn-success btn-add"><strong>+</strong></button>
                             </span>
                         </div>
                     </div>
