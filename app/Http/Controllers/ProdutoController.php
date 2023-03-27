@@ -17,27 +17,7 @@ class ProdutoController extends Controller
     //
   }
 
-  /**
-   * Display a listing of the resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function listaProdutos()
-  {
-    $dados = Produto::join('categorias', 'produtos.id_categoria', '=', 'categorias.id_categoria')
-      ->get([
-        'produtos.id_produto as ID',
-        'produtos.nome as Nome',
-        'produtos.minimo as Mínimo',
-        'categorias.nome as Categoria'
-      ]);
-    return view('lista', [
-      'dados' => $dados,
-      'titulopadrao'   => 'Lista de produtos',
-      'caminhoDetalhe' => 'produto/detalhe/',
-      'novo'           => 'produto/cadastro'
-    ]);
-  }
+  
 
   /**
    * Show the form for creating a new resource.
@@ -128,5 +108,44 @@ class ProdutoController extends Controller
   public function destroy(Produto $produto)
   {
     //
+  }
+
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function listaProdutos()
+  {
+    $dados = Produto::join('categorias', 'produtos.id_categoria', '=', 'categorias.id_categoria')
+      ->get([
+        'produtos.id_produto as ID',
+        'produtos.nome as Nome',
+        'produtos.minimo as Mínimo',
+        'categorias.nome as Categoria'
+      ]);
+    return view('lista', [
+      'dados' => $dados,
+      'titulopadrao'   => 'Lista de produtos',
+      'caminhoDetalhe' => 'produto/detalhe/',
+      'novo'           => 'produto/cadastro'
+    ]);
+  }
+
+  public function ajaxProduto(Request $request)
+  {
+    $busca = $request->busca;
+    /* if($busca == ''){
+      $produto = Produto::orderby('nome', 'asc')->select('id_produto', 'nome')->limit(2)->get();
+    }else{
+      $produto = Produto::orderby('nome', 'asc')->select('id_produto', 'nome')->where('nome', 'like', '%')->limit(2)->get();
+    } */
+    $produto = Produto::where('nome', 'LIKE', '%'. $busca. '%')->get();
+    $resposta = array();
+    foreach($produto as $item){
+      $resposta[] = array('value' => $item->id_produto, 'label' => $item->nome);
+    }
+
+    return response()->json($resposta);
   }
 }

@@ -52,3 +52,6 @@
   border-radius: 0 7px 7px 0;
   margin-top: 2px;
 }
+.ui-helper-hidden-accessible { 
+  display:none;
+}

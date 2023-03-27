@@ -7,7 +7,8 @@
             <form action="/movimento/save" method="POST">
                 @csrf
                 <label for="nome">Nota Fiscal</label>
-                <input type="text" class="form-control" name='nota_fiscal' id="notafiscal" value="{{ old('notafiscal') }}">
+                <input type="text" class="form-control" name='nota_fiscal' id="notafiscal"
+                    value="{{ old('notafiscal') }}">
                 <label for="fornecedor">Fornecedor</label>
                 <select name="id_fornecedor" id="fornecedor" class="form-select form-select-lg mb-10"
                     value="{{ old('id_fornecedor') }}">
@@ -21,16 +22,22 @@
                 <div class="row">
                     <div class="form-group multiple-form-group input-group campos_entrada">
                         <div class="input-group-btn input-group-select">
+                            {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
                             <input type="number" class="form-control" name='quantidade[]' id="quantidade"
                                 value="{{ old('quantidade') }}" placeholder="qt">
+
                             <input type="text" class="form-control" name='numeroSerie[]' id="numerodeserie"
                                 value="{{ old('numerodeserie') }}" placeholder="Núm de série">
+
                             <input type="text" class="form-control" name='nome[]' id="nome"
-                                value="{{ old('nome') }}" placeholder="Nome">
+                                value="{{ old('nome') }}" placeholder="Nome" autocomplete="new-password" >
+
                             <input type="number" class="form-control" name='valor[]' id="valor"
                                 value="{{ old('valor') }}" placeholder="valor">
+
                             <input type="number" class="form-control" name='garantia[]' id="garantia"
                                 value="{{ old('garantia') }}" placeholder="garantia">
+
                             <input type="text" class="form-control" name='observacoes[]' id="observacoes"
                                 value="{{ old('observacoes') }}" placeholder="observações">
                             <span class="input-group-btn">
@@ -39,14 +46,19 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="prod-id">ID</label>
+                    <input type="number" class="form-control" id="id-produto" placeholder="ID do produto">
+
+                </div>
 
                 <button type="submit" class="btn btn-primary mb-3">Gravar</button>
             </form>
         </div>
         <a href="/">voltar</a>
     </div>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> --}}
+
 
     <script type="text/javascript">
         $("#fornecedor").select2({
@@ -55,4 +67,39 @@
         });
     </script>
     <script src="/js/campos.js"></script>
+
+    {{-- Jquery --}}
+    <script type="text/javascript">
+        // CSRF Token
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        /* var CSRF_TOKEN = document.getElementsByName("_token"); */
+        $(document).ready(function() {
+            $("#nome").autocomplete({
+                source: function(request, response) {
+                    //console.log(request.term);
+                    $.ajax({
+                        url: "{{ route('getproduto') }}",
+                        type: 'post',
+                        dataType: "json",
+                        data: {
+                            _token: CSRF_TOKEN,
+                            busca: request.term
+                        },
+                        success: function(data) {
+                            response(data);
+                        }
+                    });
+                },
+                select: function(event, ui) {
+                    console.log(ui);
+                    $('#nome').val(ui.item.label); // demonstra o cliente pesquisado
+                    $('#id-produto').val(ui.item.value); // demonstra o email do cliente no formulário
+                    return false;
+                }
+            });
+        });
+    </script>
+
+    {{--  --}}
+
 @endsection
