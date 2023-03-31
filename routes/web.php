@@ -23,7 +23,7 @@ Route::get('/', [PrincipalController::class, 'index']);
 Route::get('lista', [ProdutoController::class, 'listaProdutos']);
 
 Route::get('produto/detalhe/{id}', [ProdutoController::class, 'show']);
-Route::post('/getproduto/{nome?}', [ProdutoController::class, 'ajaxProduto'])->name('getproduto');
+Route::post('getproduto/{nome?}', [ProdutoController::class, 'ajaxProduto'])->name('getproduto');
 Route::get('produto/cadastro', [ProdutoController::class, 'create']);
 Route::post('produto/save', [ProdutoController::class, 'store']);
 
