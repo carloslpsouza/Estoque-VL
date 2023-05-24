@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\entrada;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class EntradaController extends Controller
 {
@@ -47,19 +48,38 @@ class EntradaController extends Controller
      */
     public function store(Request $request)
     {
-        $entrada = new entrada();        
-        for($i = 0; $i < count($request->nome); $i ++)
+        $entrada = new entrada();
+        for ($i = 0; $i < count($request->nome); $i++)
             $entrada->nota_fiscal    = $request->nota_fiscal;
-            $entrada->quantidade     = $request->quantidade[$i];
-            $entrada->numeroserie    = $request->numeroSerie[$i];
-            $entrada->valor          = $request->valor[$i];
-            $entrada->garantia       = $request->garantia[$i];
-            $entrada->observacoes    = $request->observacoes[$i];
-            $entrada->id_produto     = $request->id_produto;
-            $entrada->id_user        = $request->id_user;
-            $entrada->id_fornecedor  = $request->id_fornecedor;
-        
+        $entrada->quantidade     = $request->quantidade[$i];
+        $entrada->numeroserie    = $request->numeroSerie[$i];
+        $entrada->valor          = $request->valor[$i];
+        $entrada->garantia       = $request->garantia[$i];
+        $entrada->observacoes    = $request->observacoes[$i];
+        $entrada->id_produto     = $request->id_produto;
+        $entrada->id_user        = $request->id_user;
+        $entrada->id_fornecedor  = $request->id_fornecedor;
+
         return view('teste', ['teste' => 0]);
+    }
+
+    public function storeTemp(Request $request)
+    {
+        $entradaTemporaria = [
+            'nota_fiscal'    => $request->nota_fiscal,
+            'quantidade'     => $request->quantidade,
+            'nome'           => $request->nome,
+            'numeroserie'    => $request->numeroSerie,
+            'valor'          => $request->valor,
+            'garantia'       => $request->garantia,
+            'observacoes'    => $request->observacoes,
+            'id_produto'     => $request->id_produto,
+            'id_user'        => $request->id_user,
+            'id_fornecedor'  => $request->id_fornecedor,
+        ];
+        Session::push('entradasTemporarias', $entradaTemporaria);
+        //Session::forget('entradasTemporarias');
+        return redirect('estoque/entrada');
     }
 
     /**
