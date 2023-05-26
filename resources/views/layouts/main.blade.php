@@ -136,9 +136,14 @@
                         </button>
                         <div class="collapse" id="account-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="#"
-                                        class="link-dark d-inline-flex text-decoration-none rounded">Sign
-                                        out</a></li>
+                                <li><a href="/user/profile" class="link-dark d-inline-flex text-decoration-none rounded">Profile</a></li>
+                                <form method="POST" action="/logout">
+                                    @csrf
+                                    <li>
+                                    <a href="/logout" class="link-dark d-inline-flex text-decoration-none rounded" 
+                                    onclick="event.preventDefault();
+                                    this.closest('form').submit();">Sign Out</a></li>
+                                </form>                                
                             </ul>
                         </div>
                     </li>

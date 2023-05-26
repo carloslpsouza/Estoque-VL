@@ -44,6 +44,9 @@
                                 </th>
                             </tr>
                         </thead>
+                        @php
+                            var_dump(session()->all());
+                        @endphp
 
                         @foreach (session()->get('entradasTemporarias') as $index => $item)
                             {{ $index }}
@@ -75,6 +78,7 @@
 
                             <input type="text" class="form-control ui-autocomplete-input" name='nome[]' id="nome"
                                 value="{{ old('nome') }}" placeholder="Nome" autocomplete="off">
+                            <input type="hidden" name="id_produto[]" id="id-produto">
 
                             <input type="number" class="form-control" name='valor[]' id="valor"
                                 value="{{ old('valor') }}" placeholder="valor">
@@ -91,7 +95,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="/test"><button type="button" class="btn btn-primary mb-3">Gravar</button></a>
+                <a href="/entrada/save"><button type="button" class="btn btn-primary mb-3">Gravar</button></a>
             </form>
         </div>
         <a href="/">voltar</a>
