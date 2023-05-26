@@ -66,7 +66,8 @@ class EntradaController extends Controller
 
     public function storeTemp(Request $request)
     {
-        $id_produto = intval($request->id_produto);
+        $id_produto    = intval($request->id_produto); // so retorna 1
+        $id_fornecedor = intval($request->id_fornecedor);
         $entradaTemporaria = [
             'nota_fiscal'    => $request->nota_fiscal,
             'quantidade'     => $request->quantidade,
@@ -75,9 +76,9 @@ class EntradaController extends Controller
             'valor'          => $request->valor,
             'garantia'       => $request->garantia,
             'observacoes'    => $request->observacoes,
-            'id_produto'     => $id_produto,
+            'id_produto'     => $request->id_produto,
             'id_user'        => Auth::id(),
-            'id_fornecedor'  => $request->id_fornecedor
+            'id_fornecedor'  => $id_fornecedor
         ];
         Session::push('entradasTemporarias', $entradaTemporaria);
         //Session::forget('entradasTemporarias');
