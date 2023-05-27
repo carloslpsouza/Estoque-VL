@@ -6,16 +6,22 @@
         <div class="col-md-10">
             <form action="/produtoIncluir" method="POST">
                 @csrf
-                <label for="nome">Nota Fiscal</label>
-                <input type="text" class="form-control" name='nota_fiscal' id="notafiscal" value="{{ old('notafiscal') }}">
-                <label for="fornecedor">Fornecedor</label>
-                <select name="id_fornecedor" id="fornecedor" class="form-select form-select-lg mb-10"
-                    value="{{ old('id_fornecedor') }}">
-                    <option selected></option>
-                    @foreach ($fornecedores as $item)
-                        <option value="{{ $item->ID }}">{{ $item->Nome }}-{{ $item->cnpj }}</option>
-                    @endforeach
-                </select>
+                @if (session()->get('entradasTemporarias'))
+                    <h3>Nota Fiscal: {{ session()->get('entradasTemporarias.0.nota_fiscal') }}</h3>
+                    <p><strong>Fornecedor: {{ session()->get('entradasTemporarias.0.id_fornecedor') }}</strong></p>
+                @else
+                    <label for="nome">Nota Fiscal</label>
+                    <input type="text" class="form-control" name='nota_fiscal' id="notafiscal"
+                        value="{{ old('notafiscal') }}">
+                    <label for="fornecedor">Fornecedor</label>
+                    <select name="id_fornecedor" id="fornecedor" class="form-select form-select-lg mb-10"
+                        value="{{ old('id_fornecedor') }}">
+                        <option selected></option>
+                        @foreach ($fornecedores as $item)
+                            <option value="{{ $item->ID }}">{{ $item->Nome }}-{{ $item->cnpj }}</option>
+                        @endforeach
+                    </select>
+                @endif
                 <hr>
                 {{-- @php
                     var_dump(session()->get('entradasTemporarias'));
@@ -46,10 +52,10 @@
                         </thead>
                         @php
                             /* print_r(session()->get('entradasTemporarias')); */
+                            /* print_r(session()->all()); */
                         @endphp
 
                         @foreach (session()->get('entradasTemporarias') as $index => $item)
-                            {{ $index }}
                             <tr>
                                 @foreach ($item as $idx => $it)
                                     @unless ($idx == 'id_user' || $idx == 'id_fornecedor' || $idx == 'nota_fiscal' || $idx == 'id_produto')
@@ -95,7 +101,10 @@
                         </div>
                     </div>
                 </div>
+                <hr>
                 <a href="/entrada/save"><button type="button" class="btn btn-primary mb-3">Gravar</button></a>
+                <a href="/session/destroy/entradasTemporarias"><button type="button"
+                        class="btn btn-danger mb-3">Limpar</button></a>
             </form>
         </div>
         <a href="/">voltar</a>
