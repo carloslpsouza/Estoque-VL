@@ -117,7 +117,7 @@
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li><a href="/estoque/entrada"
                                         class="link-dark d-inline-flex text-decoration-none rounded">Entrada</a></li>
-                                <li><a href="#"
+                                <li><a href="/estoque/saida"
                                         class="link-dark d-inline-flex text-decoration-none rounded">Saída</a></li>
                                 <li><a href="#"
                                         class="link-dark d-inline-flex text-decoration-none rounded">Devolução</a></li>

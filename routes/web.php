@@ -5,6 +5,7 @@ use App\Http\Controllers\EstoqueController;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\MovimentoController;
 use App\Http\Controllers\EntradaController;
+use App\Http\Controllers\SaidaController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,7 @@ Route::get('/estoque', [EstoqueController::class, 'index'])->middleware('auth');
 Route::get('/emfalta', [EstoqueController::class, 'inFault'])->middleware('auth');
 Route::get('/movimentos', [MovimentoController::class, 'index'])->middleware('auth');
 Route::get('/estoque/entrada', [EntradaController::class, 'index'])->middleware('auth');
+Route::get('/estoque/saida', [SaidaController::class, 'index'])->middleware('auth');
 Route::get('/entrada/save', [EntradaController::class, 'store'])->middleware('auth');
 
 Route::get('/session/destroy/{session}', [SessionController::class, 'sessionDestroy'])->middleware('auth');

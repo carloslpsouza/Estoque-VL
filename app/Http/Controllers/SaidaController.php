@@ -14,7 +14,13 @@ class SaidaController extends Controller
      */
     public function index()
     {
-        //
+        $fornecedores = new FornecedorController;
+        return view('/estoque/saida', [
+            'titulopadrao'   => 'Saída de produtos',
+            'caminhoDetalhe' => '#',
+            'novo'           => '#',
+            'fornecedores'     => $fornecedores->listaFornecedores()
+        ]);
     }
 
     /**
