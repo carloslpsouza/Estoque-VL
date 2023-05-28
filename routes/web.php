@@ -38,9 +38,9 @@ Route::get('/estoque', [EstoqueController::class, 'index'])->middleware('auth');
 Route::get('/emfalta', [EstoqueController::class, 'inFault'])->middleware('auth');
 Route::get('/movimentos', [MovimentoController::class, 'index'])->middleware('auth');
 Route::get('/estoque/entrada', [EntradaController::class, 'index'])->middleware('auth');
-Route::post('/entrada/save', [EntradaController::class, 'store'])->middleware('auth');
+Route::get('/entrada/save', [EntradaController::class, 'store'])->middleware('auth');
 
-Route::get('/session/destroy/{session}', [SessionController::class, 'sessionDestroy']);
+Route::get('/session/destroy/{session}', [SessionController::class, 'sessionDestroy'])->middleware('auth');
 
 Route::middleware([
     'auth:sanctum',

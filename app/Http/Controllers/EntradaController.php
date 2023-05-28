@@ -48,21 +48,43 @@ class EntradaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $entrada = new entrada();
-        for ($i = 0; $i < count($request->nome); $i++)
-            $entrada->nota_fiscal    = $request->nota_fiscal;
-            $entrada->quantidade     = $request->quantidade[$i];
-            $entrada->numeroserie    = $request->numeroSerie[$i];
-            $entrada->valor          = $request->valor[$i];
-            $entrada->garantia       = $request->garantia[$i];
-            $entrada->observacoes    = $request->observacoes[$i];
-            $entrada->id_produto     = $request->id_produto;
-            $entrada->id_user        = $request->id_user;
-            $entrada->id_fornecedor  = $request->id_fornecedor;
+{
+    $entradasTemporarias = Session::get('entradasTemporarias');
 
-        return view('teste', ['teste' => 0]);
+    $entradas = [];
+    foreach ($entradasTemporarias as $item) {
+        $entrada = [
+            'nota_fiscal'   => strval($item['nota_fiscal']),
+            'quantidade'    => intval($item['quantidade'][0]),
+            'numeroSerie'   => strval($item['numeroserie'][0]),
+            'valor'         => intval($item['valor'][0]),
+            'garantia'      => intval($item['garantia'][0]),
+            'observacoes'   => strval($item['observacoes'][0]),
+            'id_produto'    => intval($item['id_produto'][0]),
+            'id_user'       => intval($item['id_user']),
+            'id_fornecedor' => intval($item['id_fornecedor']),
+            'created_at'    => date('Y-m-d H:i:s')
+        ];
+        /* dd($entrada); */
+        $entradas[] = $entrada;
     }
+
+    // Replicar a nota fiscal e o id_user em todos os registros
+    $idFornecedor = $entradas[0]['id_fornecedor'];
+    $notaFiscal = $entradas[0]['nota_fiscal'];
+    $idUser = $entradas[0]['id_user'];
+    foreach ($entradas as &$entrada) {
+        $entrada['id_fornecedor'] = $idFornecedor;
+        $entrada['nota_fiscal']   = $notaFiscal;
+        $entrada['id_user']       = $idUser;
+    }
+
+    Entrada::insert($entradas);
+    Session::forget('entradasTemporarias');
+    return redirect('/estoque/entrada');
+}
+
+
 
     public function storeTemp(Request $request)
     {
@@ -82,7 +104,7 @@ class EntradaController extends Controller
         ];
         Session::push('entradasTemporarias', $entradaTemporaria);
         //Session::forget('entradasTemporarias');
-        return redirect('estoque/entrada');
+        return redirect('/estoque/entrada');
     }
 
     /**

@@ -11,7 +11,7 @@
                     <p><strong>Fornecedor: {{ session()->get('entradasTemporarias.0.id_fornecedor') }}</strong></p>
                 @else
                     <label for="nome">Nota Fiscal</label>
-                    <input type="text" class="form-control" name='nota_fiscal' id="notafiscal"
+                    <input required type="text" class="form-control" name='nota_fiscal' id="notafiscal"
                         value="{{ old('notafiscal') }}">
                     <label for="fornecedor">Fornecedor</label>
                     <select name="id_fornecedor" id="fornecedor" class="form-select form-select-lg mb-10"
@@ -75,21 +75,21 @@
                 <div class="row">
                     <div class="form-group multiple-form-group input-group campos_entrada" autocomplete="off">
                         <div class="input-group-btn input-group-select">
-                            {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
-                            <input type="number" class="form-control" name='quantidade[]' id="quantidade"
+                            {{-- <input required type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
+                            <input required type="number" class="form-control" name='quantidade[]' id="quantidade"
                                 value="{{ old('quantidade') }}" placeholder="qt">
 
-                            <input type="text" class="form-control" name='numeroSerie[]' id="numerodeserie"
+                            <input required type="text" class="form-control" name='numeroSerie[]' id="numerodeserie"
                                 value="{{ old('numerodeserie') }}" placeholder="Núm de série">
 
-                            <input type="text" class="form-control ui-autocomplete-input" name='nome[]' id="nome"
+                            <input required type="text" class="form-control ui-autocomplete-input" name='nome[]' id="nome"
                                 value="{{ old('nome') }}" placeholder="Nome" autocomplete="off">
-                            <input type="hidden" name='id_produto[]' id="id-produto">
+                            <input required type="hidden" name='id_produto[]' id="id-produto">
 
-                            <input type="number" class="form-control" name='valor[]' id="valor"
+                            <input required type="number" class="form-control" name='valor[]' id="valor"
                                 value="{{ old('valor') }}" placeholder="valor">
 
-                            <input type="number" class="form-control" name='garantia[]' id="garantia"
+                            <input required type="number" class="form-control" name='garantia[]' id="garantia"
                                 value="{{ old('garantia') }}" placeholder="garantia">
 
                             <input type="text" class="form-control" name='observacoes[]' id="observacoes"

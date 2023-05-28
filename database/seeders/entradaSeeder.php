@@ -24,7 +24,8 @@ class entradaSeeder extends Seeder
             'observacoes'  => '',
             'id_produto'   => 1,
             'id_user'      => 1,
-            'id_fornecedor'=> 1
+            'id_fornecedor'=> 1,
+            'created_at'  => '2023-05-10 10:00:00'            
         ]);       
     }
 }

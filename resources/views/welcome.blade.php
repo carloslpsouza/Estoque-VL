@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Welcome')
+@section('title', 'Estoque VL 1.0')
 @section('content')
 <div id="produtos-conteiner" class="col-md-1">
     <h4>Painel</h4>

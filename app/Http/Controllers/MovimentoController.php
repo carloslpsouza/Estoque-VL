@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\entrada;
+use App\Models\saida;
 use App\Models\Movimento;
 use App\Models\Produto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MovimentoController extends Controller
 {
@@ -16,21 +18,38 @@ class MovimentoController extends Controller
      */
     public function index()
     {
-        $dados = Movimento::join('produtos', 'produtos.id_produto', '=', 'movimentos.id_produto')
-        ->join('users', 'users.id_user', '=', 'movimentos.id_user')
-        ->get([
-            'movimentos.id_movimento as ID',
-            'movimentos.quantidade as QTY',
-            'produtos.nome as Nome',
-            'movimentos.numeroSerie as N. de série',
-            'users.name as Responsável'
-        ]);
+        $entradas = Entrada::join('produtos', 'produtos.id_produto', '=', 'entradas.id_produto')
+            ->join('users', 'users.id_user', '=', 'entradas.id_user')
+            ->select(                
+                DB::raw("'Entrada' as Tipo"),
+                'entradas.created_at as Data',
+                'entradas.quantidade as QTY',
+                'produtos.nome as Nome',
+                'entradas.numeroSerie as N. de série',
+                'users.name as Responsável'
+            );
+
+        $saidas = Saida::join('produtos', 'produtos.id_produto', '=', 'saidas.id_produto')
+            ->join('users', 'users.id_user', '=', 'saidas.id_user')
+            ->select(
+                DB::raw("'Saída' as Tipo"),
+                'saidas.created_at as Data',
+                'saidas.quantidade as QTY',
+                'produtos.nome as Nome',
+                'saidas.numeroSerie as N. de série',
+                'users.name as Responsável'
+            );
+
+        $dados = $entradas->union($saidas)
+            ->orderBy('Data')
+            ->get();
+
         return view('lista', [
-            'dados' => $dados, 
-            'titulopadrao'   => 'Movimentos', 
+            'dados' => $dados,
+            'titulopadrao'   => 'Movimentos',
             'caminhoDetalhe' => 'movimento/detalhe/',
             'novo'           => 'movimento/cadastro'
-        ]); 
+        ]);
     }
 
     public function listaMovPProduto($id_produto)
@@ -69,7 +88,7 @@ class MovimentoController extends Controller
     public function show(Movimento $movimento)
     {
         $movimento = Movimento::findOrFail($movimento);
-        
+
         return $movimento;
     }
 
