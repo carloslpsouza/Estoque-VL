@@ -135,11 +135,6 @@ class ProdutoController extends Controller
   public function ajaxProduto(Request $request)
   {
     $busca = $request->busca;
-    /* if($busca == ''){
-      $produto = Produto::orderby('nome', 'asc')->select('id_produto', 'nome')->limit(2)->get();
-    }else{
-      $produto = Produto::orderby('nome', 'asc')->select('id_produto', 'nome')->where('nome', 'like', '%')->limit(2)->get();
-    } */
     $produto = Produto::where('nome', 'LIKE', '%'. $busca. '%')->get();
     $resposta = array();
     foreach($produto as $item){

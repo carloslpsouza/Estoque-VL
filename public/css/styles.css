@@ -31,18 +31,22 @@
 }
 .campos_entrada #quantidade{
   width: 10%;
+  border-radius: 7px 0 0 7px;
 }
 .campos_entrada #numerodeserie{
-  width: 16%;
+  width: 20%;
 }
-.campos_entrada #nome{
+/* .campos_entrada #nome{
   width: 16%;
-}
+} */
 .campos_entrada #valor{
-  width: 13%;
+  width: 15%;
 }
 .campos_entrada #garantia{
   width: 15%;
+}
+.campos_entrada #observacoes{
+  width: 35%;
 }
 .campos_entrada button{
   margin-top: 2px;

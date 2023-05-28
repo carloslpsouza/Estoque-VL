@@ -30,11 +30,6 @@
                                 </th>
                             </tr>
                         </thead>
-                        @php
-                            /* print_r(session()->get('entradasTemporarias')); */
-                            /* print_r(session()->all()); */
-                        @endphp
-
                         @foreach (session()->get('entradasTemporarias') as $index => $item)
                             <tr>
                                 @foreach ($item as $idx => $it)
@@ -51,29 +46,30 @@
 
                     </table>
                 @endif
+                <label for="pesquisa">Pesquisar:</label>
+                <input required type="text" class="form-control ui-autocomplete-input" name='pesquisa' id="pesquisa"
+                    value="{{ old('pesquisa') }}" placeholder="?">
+                <input class="form-check-input" type="radio" name="tipo" value="1" id="ns"/><label for="ns">Número de Série</label>
+                <input class="form-check-input" type="radio" name="tipo" value="2" id="cp"/><label for="cp">Código do produto</label>
+                <input class="form-check-input" type="radio" name="tipo" value="3" id="np"/><label for="np">Nome do produto</label>
+                    <hr>
+                @if (Auth::user()->id_setor == 1)
+                    <label for="glpi">GLPI:</label>
+                    <select name="glpi" id="" class="form-select mb-10">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                @endif
 
                 <div class="row">
                     <div class="form-group multiple-form-group input-group campos_entrada" autocomplete="off">
-                        <div class="input-group-btn input-group-select">
+                        <div class="input-group-btn input-group-select" style="width: 100%">
                             {{-- <input required type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
                             <input required type="number" class="form-control" name='quantidade[]' id="quantidade"
-                                value="{{ old('quantidade') }}" placeholder="qt">
-
-                            <input required type="text" class="form-control" name='numeroSerie[]' id="numerodeserie"
-                                value="{{ old('numerodeserie') }}" placeholder="Núm de série">
-
-                            <input required type="text" class="form-control ui-autocomplete-input" name='nome[]' id="nome"
-                                value="{{ old('nome') }}" placeholder="Nome" autocomplete="off">
-                            <input required type="hidden" name='id_produto[]' id="id-produto">
-
-                            <input required type="number" class="form-control" name='valor[]' id="valor"
-                                value="{{ old('valor') }}" placeholder="valor">
-
-                            <input required type="number" class="form-control" name='garantia[]' id="garantia"
-                                value="{{ old('garantia') }}" placeholder="garantia">
+                                value="{{ old('quantidade') }}" placeholder="Qtde" style="width: 20%">
 
                             <input type="text" class="form-control" name='observacoes[]' id="observacoes"
-                                value="{{ old('observacoes') }}" placeholder="observações">
+                                value="{{ old('observacoes') }}" placeholder="observações" style="width: 75.1%">
                             <span class="input-group-btn">
                                 <button type="submit" class="btn btn-success btn-add"><strong>+</strong></button>
                             </span>
@@ -82,14 +78,15 @@
                     </div>
                 </div>
                 <hr>
-                <a href="/entrada/save"><button type="button" class="btn btn-primary mb-3">Gravar</button></a>
-                <a href="/session/destroy/entradasTemporarias"><button type="button"
-                        class="btn btn-danger mb-3">Limpar</button></a>
+                @if (session()->get('entradasTemporarias'))
+                    <a href="/entrada/save"><button type="button" class="btn btn-primary mb-3">Gravar</button></a>
+                    <a href="/session/destroy/entradasTemporarias"><button type="button"
+                            class="btn btn-danger mb-3">Limpar</button></a>
+                @endif
             </form>
         </div>
         <a href="/">voltar</a>
     </div>
-    {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> --}}
 
     <script type="text/javascript">
         $("#fornecedor").select2({
@@ -97,6 +94,5 @@
             allowClear: true
         });
     </script>
-    {{-- <script src="/js/campos.js"></script> --}}
     <script src="/js/scripts.js"></script>
 @endsection

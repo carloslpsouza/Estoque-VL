@@ -14,7 +14,7 @@
                     <input required type="text" class="form-control" name='nota_fiscal' id="notafiscal"
                         value="{{ old('notafiscal') }}">
                     <label for="fornecedor">Fornecedor</label>
-                    <select name="id_fornecedor" id="fornecedor" class="form-select form-select-lg mb-10"
+                    <select name="id_fornecedor" id="fornecedor" class="form-select mb-10"
                         value="{{ old('id_fornecedor') }}">
                         <option selected></option>
                         @foreach ($fornecedores as $item)
@@ -71,7 +71,9 @@
 
                     </table>
                 @endif
-
+                <label for="nome">Nome do produto:</label>
+                <input required type="text" class="form-control ui-autocomplete-input" name='nome[]' id="nome"
+                    value="{{ old('nome') }}" placeholder="Nome" autocomplete="off">
                 <div class="row">
                     <div class="form-group multiple-form-group input-group campos_entrada" autocomplete="off">
                         <div class="input-group-btn input-group-select">
@@ -82,8 +84,6 @@
                             <input required type="text" class="form-control" name='numeroSerie[]' id="numerodeserie"
                                 value="{{ old('numerodeserie') }}" placeholder="Núm de série">
 
-                            <input required type="text" class="form-control ui-autocomplete-input" name='nome[]' id="nome"
-                                value="{{ old('nome') }}" placeholder="Nome" autocomplete="off">
                             <input required type="hidden" name='id_produto[]' id="id-produto">
 
                             <input required type="number" class="form-control" name='valor[]' id="valor"
@@ -102,9 +102,11 @@
                     </div>
                 </div>
                 <hr>
-                <a href="/entrada/save"><button type="button" class="btn btn-primary mb-3">Gravar</button></a>
-                <a href="/session/destroy/entradasTemporarias"><button type="button"
-                        class="btn btn-danger mb-3">Limpar</button></a>
+                @if (session()->get('entradasTemporarias'))
+                    <a href="/entrada/save"><button type="button" class="btn btn-primary mb-3">Gravar</button></a>
+                    <a href="/session/destroy/entradasTemporarias"><button type="button"
+                            class="btn btn-danger mb-3">Limpar</button></a>
+                @endif
             </form>
         </div>
         <a href="/">voltar</a>
