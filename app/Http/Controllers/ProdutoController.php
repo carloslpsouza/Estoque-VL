@@ -132,7 +132,7 @@ class ProdutoController extends Controller
     ]);
   }
 
-  public function ajaxProduto(Request $request)
+  public function jqueryProduto(Request $request)
   {
     $busca = $request->busca;
     $produto = Produto::where('nome', 'LIKE', '%'. $busca. '%')->get();

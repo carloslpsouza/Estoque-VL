@@ -36,7 +36,7 @@ $(document).ready(function () {
     source: function (request, response) {
       //console.log(request.term);
       $.ajax({
-        url: "/getproduto",
+        url: "/getentrada",
         type: 'post',
         dataType: "json",
         data: {

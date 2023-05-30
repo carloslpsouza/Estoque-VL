@@ -81,7 +81,7 @@ class EntradaController extends Controller
 
     Entrada::insert($entradas);
     Session::forget('entradasTemporarias');
-    return redirect('/estoque/entrada');
+    return redirect('/estoque/entrada')->with('msg', 'Entrada registrada com sucesso!');;
 }
 
 
@@ -150,5 +150,16 @@ class EntradaController extends Controller
     public function destroy(entrada $entrada)
     {
         //
+    }
+
+    public function jqueryEntrada(Request $request)
+    {
+      $busca = $request->busca;
+      $entrada = entrada::where('nome', 'LIKE', '%'. $busca. '%')->get();
+      $resposta = array();
+      foreach($entrada as $item){
+        $resposta[] = array('value' => $item, 'label' => $item);
+      }
+      return response()->json($resposta);
     }
 }
