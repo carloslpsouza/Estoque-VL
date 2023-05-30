@@ -155,10 +155,10 @@ class EntradaController extends Controller
     public function jqueryEntrada(Request $request)
     {
       $busca = $request->busca;
-      $entrada = entrada::where('nome', 'LIKE', '%'. $busca. '%')->get();
+      $entrada = entrada::where('numeroSerie', 'LIKE', '%'. $busca. '%')->get();
       $resposta = array();
       foreach($entrada as $item){
-        $resposta[] = array('value' => $item, 'label' => $item);
+        $resposta[] = array('value' => $item, 'label' => $item->numeroSerie);
       }
       return response()->json($resposta);
     }
