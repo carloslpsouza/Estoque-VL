@@ -78,7 +78,7 @@ class SaidaController extends Controller
         $saidaTemporaria = [
             'quantidade'     => $request->quantidade,
             'nome'           => $request->nome,
-            'numeroserie'    => $request->numeroSerie,
+            'numeroserie'    => $request->numeroserie,
             'id_entrada'     => $request->id_entrada,
             'observacoes'    => $request->observacoes,
             'id_produto'     => $request->id_produto,

@@ -45,14 +45,19 @@ $(document).ready(function () {
           tipo: $("input[name='tipo']:checked").val()
         },
         success: function (data) {
-          response(data);
+          if (data.length > 0) {
+            response(data);
+          } else {
+            response([{ label: "Produto não encontrado", value: null }]);
+          }
         }
       });
     },
     select: function (event, ui) {
       console.log(ui);
       $('#pesquisa').val(ui.item.label);
-      $('#id-produto').val(ui.item.value);
+      $('#nome').val(ui.item.value['nome']);
+      $('#numeroserie').val(ui.item.value['numeroSerie']);
       return false;
     }
   });

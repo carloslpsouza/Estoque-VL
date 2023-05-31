@@ -51,7 +51,7 @@
                     </table>
                 @endif
                 @php
-                    var_dump(session()->get('saidasTemporarias'));
+                    //var_dump(session()->get('saidasTemporarias'));
                 @endphp
                 <label for="pesquisa">Pesquisar:</label>
                 <input required type="text" class="form-control ui-autocomplete-input" name='pesquisa' id="pesquisa"
@@ -69,6 +69,9 @@
 
                             <input type="text" class="form-control" name='observacoes[]' id="observacoes"
                                 value="{{ old('observacoes') }}" placeholder="observações" >
+                            
+                            <input type="hidden" id="nome" name="nome[]"/>
+                            <input type="hidden" id="numeroserie" name="numeroserie[]"/>
                             <span class="input-group-btn">
                                 <button type="submit" class="btn btn-success btn-add"><strong>+</strong></button>
                             </span>
