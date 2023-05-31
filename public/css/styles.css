@@ -20,6 +20,10 @@
   height: 35px !important;
 }
 
+input{
+  text-transform: uppercase;
+}
+
 .campos_entrada{
   width: 100%;
 }
