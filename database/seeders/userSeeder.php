@@ -22,7 +22,7 @@ class userSeeder extends Seeder
             'id_setor' => '1'
         ]);
         DB::table('users')->insert([
-            'name' => 'carlos',
+            'name' => 'Carlos Souza',
             'email' => 'carlosp.souza@gmail.com',
             'password' => '$2y$10$to8AahLa7ImvB8sVBhYAiezTFuFcWiW.GrteH1QQob0i.PgLcFjm2',
             'id_setor' => '1'
