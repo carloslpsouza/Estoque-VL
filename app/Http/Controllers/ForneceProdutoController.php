@@ -47,8 +47,8 @@ class ForneceProdutoController extends Controller
      */
     public function show($produto)
     {
-        $fornecedores = Fornecedor::join('forneceProdutos', 'fornecedores.id_fornecedor', '=','forneceProdutos.id_fornecedor')
-        ->where('forneceProdutos.id_produto', '=', $produto)
+        $fornecedores = Fornecedor::join('entradas', 'fornecedores.id_fornecedor', '=','entradas.id_fornecedor')
+        ->where('entradas.id_produto', '=', $produto)
         ->get([
             'fornecedores.id_fornecedor',
             'fornecedores.nome as nmf',
