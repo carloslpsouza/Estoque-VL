@@ -9,7 +9,8 @@
         <h5>{{ $titulopadrao }}</h5>
         <hr>
         <div class="col-md-10">
-            <p>ID: {{ $produto[0]->id_produto }} Categoria: {{ $produto[0]->nmc }}</p>
+            <p><strong>ID: {{ $produto[0]->ID }} - {{ $produto[0]->nmp }}</strong></p>
+            <p> Categoria: {{ $produto[0]->nmc }}</p>
             <h5>Fornecedores: </h5>
             <hr>
             @if (count($fornecedores) > 0)
