@@ -72,6 +72,8 @@
                             
                             <input type="hidden" id="nome" name="nome[]"/>
                             <input type="hidden" id="numeroserie" name="numeroserie[]"/>
+                            <input type="hidden" id="id_entrada" name="id_entrada[]"/>
+                            <input type="hidden" id="id_produto" name="id_produto[]"/>
                             <span class="input-group-btn">
                                 <button type="submit" class="btn btn-success btn-add"><strong>+</strong></button>
                             </span>

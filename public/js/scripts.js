@@ -58,6 +58,8 @@ $(document).ready(function () {
       $('#pesquisa').val(ui.item.label);
       $('#nome').val(ui.item.value['nome']);
       $('#numeroserie').val(ui.item.value['numeroSerie']);
+      $('#id_entrada').val(ui.item.value['id_entrada']);
+      $('#id_produto').val(ui.item.value['id_produto']);
       return false;
     }
   });
