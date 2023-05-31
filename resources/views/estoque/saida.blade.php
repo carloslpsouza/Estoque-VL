@@ -55,11 +55,11 @@
                 @endphp
                 <label for="pesquisa">Pesquisar:</label>
                 <input required type="text" class="form-control ui-autocomplete-input" name='pesquisa' id="pesquisa"
-                    value="{{ old('pesquisa') }}" placeholder="?">
-                <input required class="form-check-input" type="radio" name="tipo" value="1" id="tipo" /><label
-                    for="ns">Número de Série</label>
-                <input required class="form-check-input" type="radio" name="tipo" value="2" id="tipo" /><label
-                    for="np">Nome do produto</label>
+                    value="{{ old('pesquisa') }}" placeholder="...">
+                <input required class="form-check-input mt-2" type="radio" name="tipo" value="2" id="tipo" checked/>
+                <label for="np" class="mt-1">Nome do produto</label>
+                <input required class="form-check-input mt-2" type="radio" name="tipo" value="1" id="tipo" />
+                <label for="ns" class="mt-1">Número de Série</label>
                 <hr>
                 <div class="row">
                     <div class="form-group multiple-form-group input-group campos_saida" autocomplete="off">

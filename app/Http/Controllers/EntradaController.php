@@ -168,8 +168,7 @@ class EntradaController extends Controller
             $entrada = entrada::join('produtos', 'produtos.id_produto', '=', 'entradas.id_produto')
             ->where('produtos.nome', 'LIKE', '%' . $busca . '%')->get();
             $resposta = array();
-            foreach ($entrada as $item) {
-                
+            foreach ($entrada as $item) {                
                 $resposta[] = array('value' => $item, 'label' => $item->numeroSerie." - ".$item->nome);
             }
         }
