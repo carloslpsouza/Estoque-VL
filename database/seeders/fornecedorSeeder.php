@@ -21,13 +21,13 @@ class fornecedorSeeder extends Seeder
             'telefone'=>'+55(21)979384174',
             'cnpj'=>'12.194.359/0001-26',
             'observacoes' => ''
-        ]);
+        ]);/* 
         DB::table('fornecedores')->insert([
             'nome'=>'Intelbras',
             'email'=>'intelbras@intelbras.com',
             'telefone'=>'+55(41)5555555555',
             'cnpj'=>'82.901.000/0001-27',
             'observacoes' => ''
-        ]);
+        ]); */
     }
 }

@@ -15,12 +15,12 @@ class movimentoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('movimentos')->insert([
+/*         DB::table('movimentos')->insert([
             'quantidade'  => 1,
             'numeroSerie' => 'KJHG15245SD',
             'observacoes' => '',
             'id_produto'  => 1,
             'id_user'     => 1
-        ]);
+        ]); */
     }
 }

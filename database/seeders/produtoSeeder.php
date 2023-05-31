@@ -15,7 +15,7 @@ class produtoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('produtos')->insert([
+        /* DB::table('produtos')->insert([
             'nome'=>'Conector macho RJ45 CAT 5e',
             'imagem'       => '',
             'id_categoria' => 1,
@@ -36,6 +36,6 @@ class produtoSeeder extends Seeder
             'observacoes'  => '',
             'minimo'       => 5
             
-        ]);
+        ]); */
     }
 }

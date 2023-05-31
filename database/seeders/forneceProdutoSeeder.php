@@ -15,17 +15,17 @@ class forneceProdutoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('forneceProdutos')->insert([
-            'id_produto'=>1,
-            'id_fornecedor'=>1
+/*         DB::table('forneceProdutos')->insert([
+            'id_produto' => 1,
+            'id_fornecedor' => 1
         ]);
         DB::table('forneceProdutos')->insert([
-            'id_produto'=>1,
-            'id_fornecedor'=>2
+            'id_produto' => 1,
+            'id_fornecedor' => 2
         ]);
         DB::table('forneceProdutos')->insert([
-            'id_produto'=>3,
-            'id_fornecedor'=>1
-        ]);
+            'id_produto' => 3,
+            'id_fornecedor' => 1
+        ]); */
     }
 }

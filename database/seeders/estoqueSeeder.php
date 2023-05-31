@@ -15,7 +15,7 @@ class estoqueSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('estoque')->insert([
+/*         DB::table('estoque')->insert([
             'quantidade'  => 1,
             'id_produto'  => 1,
             'observacoes' => '',
@@ -26,6 +26,6 @@ class estoqueSeeder extends Seeder
             'id_produto'  => 2,
             'observacoes' => '',
             'id_setor'    => 2
-        ]);
+        ]); */
     }
 }
