@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\entrada;
+use App\Models\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -48,41 +49,41 @@ class EntradaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-{
-    $entradasTemporarias = Session::get('entradasTemporarias');
+    {
+        $entradasTemporarias = Session::get('entradasTemporarias');
 
-    $entradas = [];
-    foreach ($entradasTemporarias as $item) {
-        $entrada = [
-            'nota_fiscal'   => strval($item['nota_fiscal']),
-            'quantidade'    => intval($item['quantidade'][0]),
-            'numeroSerie'   => strval($item['numeroserie'][0]),
-            'valor'         => intval($item['valor'][0]),
-            'garantia'      => intval($item['garantia'][0]),
-            'observacoes'   => strval($item['observacoes'][0]),
-            'id_produto'    => intval($item['id_produto'][0]),
-            'id_user'       => intval($item['id_user']),
-            'id_fornecedor' => intval($item['id_fornecedor']),
-            'created_at'    => date('Y-m-d H:i:s')
-        ];
-        /* dd($entrada); */
-        $entradas[] = $entrada;
+        $entradas = [];
+        foreach ($entradasTemporarias as $item) {
+            $entrada = [
+                'nota_fiscal'   => strval($item['nota_fiscal']),
+                'quantidade'    => intval($item['quantidade'][0]),
+                'numeroSerie'   => strval($item['numeroserie'][0]),
+                'valor'         => intval($item['valor'][0]),
+                'garantia'      => intval($item['garantia'][0]),
+                'observacoes'   => strval($item['observacoes'][0]),
+                'id_produto'    => intval($item['id_produto'][0]),
+                'id_user'       => intval($item['id_user']),
+                'id_fornecedor' => intval($item['id_fornecedor']),
+                'created_at'    => date('Y-m-d H:i:s')
+            ];
+            /* dd($entrada); */
+            $entradas[] = $entrada;
+        }
+
+        // Replicar a nota fiscal e o id_user em todos os registros
+        $idFornecedor = $entradas[0]['id_fornecedor'];
+        $notaFiscal = $entradas[0]['nota_fiscal'];
+        $idUser = $entradas[0]['id_user'];
+        foreach ($entradas as &$entrada) {
+            $entrada['id_fornecedor'] = $idFornecedor;
+            $entrada['nota_fiscal']   = $notaFiscal;
+            $entrada['id_user']       = $idUser;
+        }
+
+        Entrada::insert($entradas);
+        Session::forget('entradasTemporarias');
+        return redirect('/estoque/entrada')->with('msg', 'Entrada registrada com sucesso!');;
     }
-
-    // Replicar a nota fiscal e o id_user em todos os registros
-    $idFornecedor = $entradas[0]['id_fornecedor'];
-    $notaFiscal = $entradas[0]['nota_fiscal'];
-    $idUser = $entradas[0]['id_user'];
-    foreach ($entradas as &$entrada) {
-        $entrada['id_fornecedor'] = $idFornecedor;
-        $entrada['nota_fiscal']   = $notaFiscal;
-        $entrada['id_user']       = $idUser;
-    }
-
-    Entrada::insert($entradas);
-    Session::forget('entradasTemporarias');
-    return redirect('/estoque/entrada')->with('msg', 'Entrada registrada com sucesso!');;
-}
 
 
 
@@ -154,12 +155,24 @@ class EntradaController extends Controller
 
     public function jqueryEntrada(Request $request)
     {
-      $busca = $request->busca;
-      $entrada = entrada::where('numeroSerie', 'LIKE', '%'. $busca. '%')->get();
-      $resposta = array();
-      foreach($entrada as $item){
-        $resposta[] = array('value' => $item, 'label' => $item->numeroSerie);
-      }
-      return response()->json($resposta);
+        $busca = $request->busca;
+        if ($request->tipo == "1") {
+            $entrada = entrada::where('numeroSerie', 'LIKE', '%' . $busca . '%')->get();
+            $resposta = array();
+            foreach ($entrada as $item) {
+                $nome = Produto::where('id_produto', '=', $item->id_produto)->get('nome');
+                $resposta[] = array('value' => $item, 'label' => $item->numeroSerie . " - " . $nome[0]['nome']);
+            }
+        }
+        if ($request->tipo == "2") {
+            $entrada = entrada::join('produtos', 'produtos.id_produto', '=', 'entradas.id_produto')
+            ->where('produtos.nome', 'LIKE', '%' . $busca . '%')->get();
+            $resposta = array();
+            foreach ($entrada as $item) {
+                
+                $resposta[] = array('value' => $item, 'label' => $item->numeroSerie." - ".$item->nome);
+            }
+        }
+        return response()->json($resposta);
     }
 }

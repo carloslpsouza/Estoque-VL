@@ -41,7 +41,8 @@ $(document).ready(function () {
         dataType: "json",
         data: {
           _token: CSRF_TOKEN,
-          busca: request.term
+          busca: request.term,
+          tipo: $("input[name='tipo']:checked").val()
         },
         success: function (data) {
           response(data);

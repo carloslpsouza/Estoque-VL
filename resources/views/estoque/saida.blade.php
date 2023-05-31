@@ -56,11 +56,9 @@
                 <label for="pesquisa">Pesquisar:</label>
                 <input required type="text" class="form-control ui-autocomplete-input" name='pesquisa' id="pesquisa"
                     value="{{ old('pesquisa') }}" placeholder="?">
-                <input class="form-check-input" type="radio" name="tipo" value="1" id="ns" /><label
+                <input required class="form-check-input" type="radio" name="tipo" value="1" id="tipo" /><label
                     for="ns">Número de Série</label>
-                <input class="form-check-input" type="radio" name="tipo" value="2" id="cp" /><label
-                    for="cp">Código do produto</label>
-                <input class="form-check-input" type="radio" name="tipo" value="3" id="np" /><label
+                <input required class="form-check-input" type="radio" name="tipo" value="2" id="tipo" /><label
                     for="np">Nome do produto</label>
                 <hr>
                 <div class="row">
