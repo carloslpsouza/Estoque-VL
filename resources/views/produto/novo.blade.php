@@ -8,6 +8,10 @@
                 @csrf
                 <label for="nome">Nome</label>
                 <input type="text" class="form-control" name='nome' id="nome"  value="{{ old('nome') }}">
+                <label for="nome">Mínimo</label>
+                <input type="number" class="form-control" name='minimo' id="minimo"  value="{{ old('minimo') }}">
+                <label for="nome">Imagem</label>
+                <input type="number" class="form-control" name='imagem' id="imagem"  value="{{ old('imagem') }}" placeholder="Ainda em desenvolvimento" disabled>
                 <label for="categoria">Categoria</label>
                 <select name="id_categoria" id="categorias" class="form-select form-select-lg mb-10"  value="{{ old('id_categoria') }}">
                     <option selected></option>
