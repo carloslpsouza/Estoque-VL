@@ -20,7 +20,7 @@ class MovimentoController extends Controller
     {
         $entradas = Entrada::join('produtos', 'produtos.id_produto', '=', 'entradas.id_produto')
             ->join('users', 'users.id_user', '=', 'entradas.id_user')
-            ->select(                
+            ->select(
                 DB::raw("'Entrada' as Tipo"),
                 'entradas.created_at as Data',
                 'entradas.quantidade as QTY',
@@ -54,7 +54,34 @@ class MovimentoController extends Controller
 
     public function listaMovPProduto($id_produto)
     {
-        $dados = Movimento::all()->where('id_produto', '=', $id_produto);
+        $entradas = Entrada::join('produtos', 'produtos.id_produto', '=', 'entradas.id_produto')
+            ->join('users', 'users.id_user', '=', 'entradas.id_user')
+            ->where('produtos.id_produto', '=', $id_produto)
+            ->select(
+                DB::raw("'Entrada' as Tipo"),
+                'entradas.created_at as Data',
+                'entradas.quantidade as QTY',
+                'produtos.nome as Nome',
+                'entradas.numeroSerie as N. de série',
+                'users.name as Responsável'
+            );
+
+        $saidas = Saida::join('produtos', 'produtos.id_produto', '=', 'saidas.id_produto')
+            ->join('users', 'users.id_user', '=', 'saidas.id_user')
+            ->where('produtos.id_produto', '=', $id_produto)
+            ->select(
+                DB::raw("'Saída' as Tipo"),
+                'saidas.created_at as Data',
+                'saidas.quantidade as QTY',
+                'produtos.nome as Nome',
+                'saidas.numeroSerie as N. de série',
+                'users.name as Responsável'
+            );
+
+        $dados = $entradas->union($saidas)
+            ->orderBy('Data')
+            ->get();
+
         return $dados;
     }
 
