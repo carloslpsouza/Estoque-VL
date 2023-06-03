@@ -82,8 +82,9 @@ class FornecedorController extends Controller
     public function show($id)
     {
         $fornecedor = Fornecedor::find($id);
-        $dados = Produto::join('forneceProdutos', 'produtos.id_produto', '=', 'forneceProdutos.id_produto')
-            ->where('forneceProdutos.id_fornecedor', '=', $id)
+        $dados = Produto::join('entradas', 'produtos.id_produto', '=', 'entradas.id_produto')
+            ->where('entradas.id_fornecedor', '=', $id)
+            ->groupBy('produtos.id_produto', 'produtos.nome', 'produtos.observacoes')
             ->get([
                 'produtos.id_produto as ID',
                 'produtos.nome as Nome',

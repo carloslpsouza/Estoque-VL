@@ -16,7 +16,7 @@
             @if (count($fornecedores) > 0)
                 <div class="list-group">
                     @foreach ($fornecedores as $item)
-                        <a href="#"
+                        <a href="/fornecedor/detalhe/{{ $item->id_fornecedor }}"
                             class="list-group-item list-group-item-action list-group-item-light">{{ $item->nmf }} -
                             {{ $item->email }}</a>
                     @endforeach
