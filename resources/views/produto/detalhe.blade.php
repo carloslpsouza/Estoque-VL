@@ -20,7 +20,8 @@
                             class="list-group-item list-group-item-action list-group-item-light">{{ $item->nmf }} -
                             {{ $item->email }}</a>
                     @endforeach
-                    @if (count($movimentopproduto)>0)
+                    @if (count($movimentopproduto) > 0)
+                        <br>
                         <h5>Movimentações: </h5>
                         <hr>
                         <table class="table table-hover">
@@ -28,7 +29,7 @@
                             <thead>
                                 <tr>
                                     @foreach (json_decode($movimentopproduto[0]) as $key => $value)
-                                        @unless($key == 'created_at' || $key == 'updated_at')
+                                        @unless ($key == 'created_at' || $key == 'updated_at')
                                             <th scope="col">{{ $key }}</th>
                                         @endunless
                                     @endforeach
@@ -39,7 +40,7 @@
                                     <tr onclick="location.href='..'">
 
                                         @foreach (json_decode($value) as $key1 => $value1)
-                                            @unless($key1 == 'created_at' || $key1 == 'updated_at')
+                                            @unless ($key1 == 'created_at' || $key1 == 'updated_at')
                                                 <td>{{ $value1 }}</td>
                                             @endunless
                                         @endforeach

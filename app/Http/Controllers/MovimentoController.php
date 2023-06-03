@@ -23,7 +23,7 @@ class MovimentoController extends Controller
             ->select(
                 DB::raw("'Entrada' as Tipo"),
                 'entradas.created_at as Data',
-                'entradas.quantidade as QTY',
+                'entradas.quantidade as QTDE',
                 'produtos.nome as Nome',
                 'entradas.numeroSerie as N. de série',
                 'users.name as Responsável'
@@ -34,7 +34,7 @@ class MovimentoController extends Controller
             ->select(
                 DB::raw("'Saída' as Tipo"),
                 'saidas.created_at as Data',
-                'saidas.quantidade as QTY',
+                'saidas.quantidade as QTDE',
                 'produtos.nome as Nome',
                 'saidas.numeroSerie as N. de série',
                 'users.name as Responsável'
@@ -47,8 +47,8 @@ class MovimentoController extends Controller
         return view('lista', [
             'dados' => $dados,
             'titulopadrao'   => 'Movimentos',
-            'caminhoDetalhe' => 'movimento/detalhe/',
-            'novo'           => 'movimento/cadastro'
+            'caminhoDetalhe' => '#',
+            'novo'           => '/estoque/entrada'
         ]);
     }
 
