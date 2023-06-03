@@ -21,7 +21,7 @@
                 @endif
                 <hr>
                 @php
-                    var_dump(session()->get('entradasTemporarias'));
+                    //var_dump(session()->get('entradasTemporarias'));
                 @endphp
                 @if (session()->get('entradasTemporarias'))
                     <table class="table table-hover">
