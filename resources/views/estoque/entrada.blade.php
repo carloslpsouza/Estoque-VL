@@ -8,24 +8,21 @@
                 @csrf
                 @if (session()->get('entradasTemporarias'))
                     <h3>Nota Fiscal: {{ session()->get('entradasTemporarias.0.nota_fiscal') }}</h3>
-                    <p><strong>Fornecedor: {{ session()->get('entradasTemporarias.0.id_fornecedor') }}</strong></p>
+                    <p><strong>Fornecedor: ID: {{ session()->get('entradasTemporarias.0.id_fornecedor') }} CNPJ: {{ session()->get('entradasTemporarias.0.nm_fornecedor') }}</strong></p>
                 @else
-                    <label for="nome">Nota Fiscal</label>
+                    <label for="nome">Nota fiscal</label>
                     <input required type="text" class="form-control" name='nota_fiscal' id="notafiscal"
                         value="{{ old('notafiscal') }}">
                     <label for="fornecedor">Fornecedor</label>
-                    <select name="id_fornecedor" id="fornecedor" class="form-select mb-10"
-                        value="{{ old('id_fornecedor') }}">
-                        <option selected></option>
-                        @foreach ($fornecedores as $item)
-                            <option value="{{ $item->ID }}">{{ $item->Nome }}-{{ $item->cnpj }}</option>
-                        @endforeach
-                    </select>
+                    <input required type="text" class="form-control ui-autocomplete-input" name='fornecedor'
+                        id="fornecedor" value="{{ old('fornecedor') }}" autocomplete="off">
+                    <input required type="hidden" name='id_fornecedor' id="id-fornecedor">
+                    <input required type="hidden" name='nm_fornecedor' id="nm-fornecedor">
                 @endif
                 <hr>
-                {{-- @php
+                @php
                     var_dump(session()->get('entradasTemporarias'));
-                @endphp --}}
+                @endphp
                 @if (session()->get('entradasTemporarias'))
                     <table class="table table-hover">
                         <thead>
@@ -58,7 +55,7 @@
                         @foreach (session()->get('entradasTemporarias') as $index => $item)
                             <tr>
                                 @foreach ($item as $idx => $it)
-                                    @unless ($idx == 'id_user' || $idx == 'id_fornecedor' || $idx == 'nota_fiscal' || $idx == 'id_produto')
+                                    @unless ($idx == 'id_user' || $idx == 'id_fornecedor' || $idx == 'nota_fiscal' || $idx == 'id_produto' || $idx == 'nm_fornecedor')
                                         @if (is_array($it))
                                             <td>{{ $it[0] }}</td>
                                         @else
@@ -74,6 +71,8 @@
                 <label for="nome">Nome do produto:</label>
                 <input required type="text" class="form-control ui-autocomplete-input" name='nome[]' id="nome"
                     value="{{ old('nome') }}" placeholder="Nome" autocomplete="off">
+                <input required type="hidden" name='id_produto[]' id="id-produto">
+
                 <div class="row">
                     <div class="form-group multiple-form-group input-group campos_entrada" autocomplete="off">
                         <div class="input-group-btn input-group-select">
@@ -83,8 +82,6 @@
 
                             <input required type="text" class="form-control" name='numeroSerie[]' id="numerodeserie"
                                 value="{{ old('numerodeserie') }}" placeholder="Núm de série">
-
-                            <input required type="hidden" name='id_produto[]' id="id-produto">
 
                             <input required type="number" class="form-control" name='valor[]' id="valor"
                                 value="{{ old('valor') }}" placeholder="valor">
@@ -111,14 +108,6 @@
         </div>
         <a href="/">voltar</a>
     </div>
-    {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> --}}
 
-    <script type="text/javascript">
-        $("#fornecedor").select2({
-            placeholder: "Selecione o fornecedor",
-            allowClear: true
-        });
-    </script>
-    {{-- <script src="/js/campos.js"></script> --}}
     <script src="/js/scripts.js"></script>
 @endsection

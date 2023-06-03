@@ -101,7 +101,8 @@ class EntradaController extends Controller
             'observacoes'    => $request->observacoes,
             'id_produto'     => $request->id_produto,
             'id_user'        => Auth::id(),
-            'id_fornecedor'  => $id_fornecedor
+            'id_fornecedor'  => $id_fornecedor,
+            'nm_fornecedor'  => $request->nm_fornecedor
         ];
         Session::push('entradasTemporarias', $entradaTemporaria);
         //Session::forget('entradasTemporarias');

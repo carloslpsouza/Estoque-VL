@@ -25,24 +25,26 @@ Route::get('/', [PrincipalController::class, 'index']);
 Route::get('lista', [ProdutoController::class, 'listaProdutos'])->middleware('auth');
 
 Route::get('/produto/detalhe/{id}', [ProdutoController::class, 'show'])->middleware('auth');
+Route::get('/produto/cadastro', [ProdutoController::class, 'create'])->middleware('auth');
 Route::post('/getproduto/{nome?}', [ProdutoController::class, 'jqueryProduto'])->name('getproduto')->middleware('auth');
 Route::post('/produtoIncluir', [EntradaController::class, 'storeTemp'])->name('incluirProduto')->middleware('auth');
 Route::post('/produtoBaixar', [SaidaController::class, 'storeTemp'])->name('BaixarProduto')->middleware('auth');
-Route::get('/produto/cadastro', [ProdutoController::class, 'create'])->middleware('auth');
 Route::post('/produto/save', [ProdutoController::class, 'store'])->middleware('auth');
 
 Route::get('/fornecedores', [FornecedorController::class, 'index'])->middleware('auth');
 Route::get('/fornecedor/cadastro', [FornecedorController::class, 'create'])->middleware('auth');
 Route::get('/fornecedor/detalhe/{id}', [FornecedorController::class, 'show'])->middleware('auth');
+Route::post('/getfornecedor/{id?}', [FornecedorController::class, 'jqueryFornecedor'])->name('getfornecedor')->middleware('auth');
 Route::post('/fornecedor/save', [FornecedorController::class, 'store'])->middleware('auth');
 
 Route::get('/estoque', [EstoqueController::class, 'index'])->middleware('auth');
 Route::get('/emfalta', [EstoqueController::class, 'inFault'])->middleware('auth');
 Route::get('/movimentos', [MovimentoController::class, 'index'])->middleware('auth');
 Route::get('/estoque/entrada', [EntradaController::class, 'index'])->middleware('auth');
-Route::post('/getentrada/{nome?}', [EntradaController::class, 'jqueryEntrada'])->name('getentrada')->middleware('auth');
 Route::get('/estoque/saida', [SaidaController::class, 'index'])->middleware('auth');
 Route::get('/entrada/save', [EntradaController::class, 'store'])->middleware('auth');
+Route::post('/getentrada/{nome?}', [EntradaController::class, 'jqueryEntrada'])->name('getentrada')->middleware('auth');
+
 Route::get('/saida/save', [SaidaController::class, 'store'])->middleware('auth');
 
 Route::get('/session/destroy/{session}', [SessionController::class, 'sessionDestroy'])->middleware('auth');

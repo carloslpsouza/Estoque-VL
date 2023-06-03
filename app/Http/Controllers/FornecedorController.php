@@ -131,4 +131,16 @@ class FornecedorController extends Controller
     {
         //
     }
+
+    public function jqueryFornecedor(Request $request)
+    {
+      $busca = $request->busca;
+      $fornecedor = Fornecedor::where('nome', 'LIKE', '%'. $busca. '%')->get();
+      $resposta = array();
+      foreach($fornecedor as $item){
+        $resposta[] = array('value' => $item->id_fornecedor, 'label' => $item->cnpj." - ".$item->nome);
+      }
+  
+      return response()->json($resposta);
+    }
 }
