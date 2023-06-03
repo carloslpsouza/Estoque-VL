@@ -49,6 +49,7 @@ class ForneceProdutoController extends Controller
     {
         $fornecedores = Fornecedor::join('entradas', 'fornecedores.id_fornecedor', '=','entradas.id_fornecedor')
         ->where('entradas.id_produto', '=', $produto)
+        ->groupBy('fornecedores.id_fornecedor', 'fornecedores.nome', 'fornecedores.cnpj', 'fornecedores.email')
         ->get([
             'fornecedores.id_fornecedor',
             'fornecedores.nome as nmf',
