@@ -156,8 +156,9 @@
         <script src="/js/sidebars.js"></script>
         {{-- /nav --}}
 
-        {{--  --}}
+        {{--  --}}        
     </div>
+    <div id="assinatura"><p>Desenvolvido por Carlos LP Souza</p></div>
 </body>
 
 </html>

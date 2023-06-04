@@ -71,3 +71,16 @@ input{
   height: 40px;
   padding: 5px;
 } */
+
+#assinatura{
+	background-image: url(/img/logo_mope.png);
+	background-repeat: no-repeat;
+	background-size: 30px;
+	background-position: left;
+	position: fixed;
+	right: 2%;
+	top: 94.5%;
+	width: 190px;
+	font-size: 10px;
+	text-align: right;
+}

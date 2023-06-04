@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PrincipalController::class, 'index']);
+Route::get('/dashboard', [PrincipalController::class, 'index']);
 Route::get('lista', [ProdutoController::class, 'listaProdutos'])->middleware('auth');
 
 Route::get('/produto/detalhe/{id}', [ProdutoController::class, 'show'])->middleware('auth');
