@@ -105,22 +105,25 @@ class EstoqueController extends Controller
      */
     public function inFault()
     {
-        $dados = DB::select('SELECT produtos.id_produto as ID, produtos.nome as Nome, estoque.quantidade as Atual, produtos.minimo as Mínimo FROM estoque JOIN produtos ON estoque.id_produto = produtos.id_produto WHERE estoque.quantidade < produtos.minimo');
-        /*$dados = estoque::join('produtos', 'produtos.id_produto', '=', 'estoque.id_produto')
-        ->where('estoque.quantidade','<','estoque.minimo')
-        ->get([
-            'produtos.id_produto as ID',
-            'produtos.nome as Nome',
-            'estoque.quantidade as Atual',
-            'estoque.minimo as Mínimo'
-        ]); */
+        $dados = DB::table('estoque')
+            ->join('produtos', 'estoque.id_produto', '=', 'produtos.id_produto')
+            ->select(
+                'produtos.id_produto as ID',
+                'produtos.nome as Nome',
+                'estoque.quantidade as Atual',
+                'produtos.minimo as Mínimo'
+            )
+            ->where('estoque.quantidade', '<', DB::raw('produtos.minimo'))
+            ->paginate(10);
+        
         return view('estoque/emfalta', [
-            'dados'          => $dados,
-            'titulopadrao'   => 'Material em falta',
+            'dados' => $dados,
+            'titulopadrao' => 'Material em falta',
             'caminhoDetalhe' => 'produto/detalhe/',
-            'novo'           => false
+            'novo' => false
         ]);
     }
+    
             /**
      * Remove the specified resource from storage.
      *

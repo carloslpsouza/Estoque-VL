@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Produto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ProdutoController extends Controller
 {
@@ -49,7 +50,7 @@ class ProdutoController extends Controller
     $produto->id_categoria = $request->id_categoria;
 
     $produto->save();
-    return redirect('/')->with('msg', 'Produto salvo com sucesso!');
+    return redirect(Session::previousUrl())->with('msg', 'Produto salvo com sucesso!');
   }
 
   /**
@@ -119,12 +120,12 @@ class ProdutoController extends Controller
   public function listaProdutos()
   {
     $dados = Produto::join('categorias', 'produtos.id_categoria', '=', 'categorias.id_categoria')
-      ->get([
+      ->select([
         'produtos.id_produto as ID',
         'produtos.nome as Nome',
         'produtos.minimo as Mínimo',
         'categorias.nome as Categoria'
-      ]);
+      ])->paginate(10);
     return view('lista', [
       'dados' => $dados,
       'titulopadrao'   => 'Lista de produtos',

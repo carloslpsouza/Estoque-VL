@@ -42,7 +42,7 @@ class MovimentoController extends Controller
 
         $dados = $entradas->union($saidas)
             ->orderBy('Data')
-            ->get();
+            ->paginate(10);
 
         return view('lista', [
             'dados' => $dados,

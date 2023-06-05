@@ -15,13 +15,13 @@ class FornecedorController extends Controller
      */
     public function index()
     {
-        $dados = Fornecedor::get([
+        $dados = Fornecedor::select([
             'id_fornecedor as ID',
             'nome as Nome',
             'fornecedores.cnpj as CNPJ',
             'email as Email',
             'telefone as Telefone'
-        ]);
+        ])->paginate(10);
         return view('lista', [
             'dados' => $dados,
             'titulopadrao' => 'Fornecedores',

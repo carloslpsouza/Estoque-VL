@@ -18,8 +18,13 @@
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- Compiled and minified JavaScript -->
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> --}}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <!-- Local styles -->
     <link href="/css/sidebars.css" rel="stylesheet">
+    <link href="/css/pagination.css" rel="stylesheet">    
     <link href="/css/styles.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 </head>
@@ -134,14 +139,17 @@
                         </button>
                         <div class="collapse" id="account-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="/user/profile" class="link-dark d-inline-flex text-decoration-none rounded">Profile</a></li>
+                                <li><a href="/user/profile"
+                                        class="link-dark d-inline-flex text-decoration-none rounded">Profile</a></li>
                                 <form method="POST" action="/logout">
                                     @csrf
                                     <li>
-                                    <a href="/logout" class="link-dark d-inline-flex text-decoration-none rounded" 
-                                    onclick="event.preventDefault();
-                                    this.closest('form').submit();">Sign Out</a></li>
-                                </form>                                
+                                        <a href="/logout" class="link-dark d-inline-flex text-decoration-none rounded"
+                                            onclick="event.preventDefault();
+                                    this.closest('form').submit();">Sign
+                                            Out</a>
+                                    </li>
+                                </form>
                             </ul>
                         </div>
                     </li>
@@ -156,9 +164,11 @@
         <script src="/js/sidebars.js"></script>
         {{-- /nav --}}
 
-        {{--  --}}        
+        {{--  --}}
     </div>
-    <div id="assinatura"><p>Desenvolvido por Carlos LP Souza</p></div>
+    <div id="assinatura">
+        <p>Desenvolvido por Carlos LP Souza</p>
+    </div>
 </body>
 
 </html>
