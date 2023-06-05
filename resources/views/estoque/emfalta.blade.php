@@ -34,7 +34,7 @@
                 @endif
             </table>
         </div>
-        <a href="/">voltar</a>
+        <a href={{session()->get('_previous.url')}}>voltar</a>
         @if ($novo)
             <a href="{{ $novo }}">Novo</a>
         @endif

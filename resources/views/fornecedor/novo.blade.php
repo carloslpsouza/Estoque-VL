@@ -23,7 +23,7 @@
                 <button type="submit" class="btn btn-primary mb-3">Gravar</button>
             </form>
         </div>
-        <a href="/">voltar</a>
+        <a href={{session()->get('_previous.url')}}>voltar</a>
     </div>
 
 

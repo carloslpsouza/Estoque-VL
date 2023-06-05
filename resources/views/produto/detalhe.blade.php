@@ -59,7 +59,7 @@
                         Este produto ainda não tem fornecedor cadastrado.
                     </a>
             @endif
-            <a href="/">voltar</a>
+            <a href={{session()->get('_previous.url')}}>voltar</a>
         </div>
     </div>
 

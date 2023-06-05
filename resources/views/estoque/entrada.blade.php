@@ -106,7 +106,7 @@
                 @endif
             </form>
         </div>
-        <a href="/">voltar</a>
+        <a href={{session()->get('_previous.url')}}>voltar</a>
     </div>
 
     <script src="/js/scripts.js"></script>

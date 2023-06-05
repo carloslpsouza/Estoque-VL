@@ -37,7 +37,7 @@
                 </tbody>
             </table>
         </div>
-        <a href="/">voltar</a>
+        <a href={{session()->get('_previous.url')}}>voltar</a>
     </div>
 
 @endsection

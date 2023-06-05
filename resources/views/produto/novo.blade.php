@@ -24,7 +24,7 @@
                 <button type="submit" class="btn btn-primary mb-3">Gravar</button>
             </form>
         </div>
-        <a href="/">voltar</a>
+        <a href={{session()->get('_previous.url')}}>voltar</a>
     </div>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
