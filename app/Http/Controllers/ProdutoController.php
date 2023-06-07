@@ -133,6 +133,7 @@ class ProdutoController extends Controller
       'novo'           => 'produto/cadastro'
     ]);
   }
+  
 
   public function jqueryProduto(Request $request)
   {

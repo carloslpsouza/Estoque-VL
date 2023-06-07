@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categoria;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class CategoriaController extends Controller
+class UsersAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,16 +14,16 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        $dados = Categoria::select([
-            'id_categoria as ID',
-            'nome as Nome',
-            'observacoes as Observações'
+        $dados = User::select([
+            'id_user as ID',
+            'name as Nome',
+            'email as E-mail'
         ])->paginate(10);
         return view('lista', [
             'dados' => $dados,
-            'titulopadrao'   => 'Categorias cadastradas',
-            'caminhoDetalhe' => '/categoria/detalhe/',
-            'novo'           => '/categoria/cadastro'
+            'titulopadrao'   => 'Usuários cadastrados',
+            'caminhoDetalhe' => '/user/detalhe/',
+            'novo'           => '/register'
         ]);
     }
 
@@ -51,30 +51,21 @@ class CategoriaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Categoria  $categoria
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Categoria $categoria)
+    public function show($id)
     {
         //
-    }
-
-    public function listaCategoria()
-    {
-        $categoria = Categoria::get([
-            'categorias.id_categoria as ID',
-            'categorias.nome as Nome'
-        ]);
-        return $categoria;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Categoria  $categoria
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categoria $categoria)
+    public function edit($id)
     {
         //
     }
@@ -83,10 +74,10 @@ class CategoriaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Categoria  $categoria
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -94,10 +85,10 @@ class CategoriaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Categoria  $categoria
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categoria $categoria)
+    public function destroy($id)
     {
         //
     }

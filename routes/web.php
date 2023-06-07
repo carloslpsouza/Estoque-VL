@@ -8,6 +8,9 @@ use App\Http\Controllers\EntradaController;
 use App\Http\Controllers\SaidaController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\SetorController;
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\UsersAdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PrincipalController::class, 'index']);
 Route::get('/dashboard', [PrincipalController::class, 'index']);
-Route::get('lista', [ProdutoController::class, 'listaProdutos'])->middleware('auth');
+Route::get('/lista', [ProdutoController::class, 'listaProdutos'])->middleware('auth');
 
 Route::get('/produto/detalhe/{id}', [ProdutoController::class, 'show'])->middleware('auth');
 Route::get('/produto/cadastro', [ProdutoController::class, 'create'])->middleware('auth');
@@ -49,6 +52,10 @@ Route::post('/getentrada/{nome?}', [EntradaController::class, 'jqueryEntrada'])-
 Route::get('/saida/save', [SaidaController::class, 'store'])->middleware('auth');
 
 Route::get('/session/destroy/{session}', [SessionController::class, 'sessionDestroy'])->middleware('auth');
+
+Route::get('/setor', [SetorController::class, 'index'])->middleware('auth');
+Route::get('/categoria', [CategoriaController::class, 'index'])->middleware('auth');
+Route::get('/users', [UsersAdminController  ::class, 'index'])->middleware('auth');
 
 Route::middleware([
     'auth:sanctum',

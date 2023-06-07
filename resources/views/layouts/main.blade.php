@@ -23,7 +23,7 @@
 
     <!-- Local styles -->
     <link href="/css/sidebars.css" rel="stylesheet">
-    <link href="/css/pagination.css" rel="stylesheet">    
+    <link href="/css/pagination.css" rel="stylesheet">
     <link href="/css/styles.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 </head>
@@ -129,6 +129,31 @@
                             </ul>
                         </div>
                     </li>
+                    @auth
+                        @if (Auth::user()->id_setor == 1)
+                            <li class="border-top my-3"></li>
+                            <li class="mb-1 danger">
+                                <button class="text-danger btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                                    data-bs-toggle="collapse" data-bs-target="#admin-collapse" aria-expanded="false">
+                                    Admin
+                                </button>
+                                <div class="collapse" id="admin-collapse">
+                                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                        <li><a href="/setor"
+                                                class="link-dark d-inline-flex text-decoration-none rounded">Setores</a>
+                                        </li>
+                                        <li><a href="/users"
+                                                class="link-dark d-inline-flex text-decoration-none rounded">Usuários</a>
+                                        </li>
+                                        <li><a href="/categoria"
+                                                class="link-dark d-inline-flex text-decoration-none rounded">Categorias</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        @endif
+                    @endauth
+
                     </li>
                     <li class="border-top my-3"></li>
                     <li class="mb-1">

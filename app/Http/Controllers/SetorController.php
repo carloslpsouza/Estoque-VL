@@ -14,7 +14,19 @@ class SetorController extends Controller
      */
     public function index()
     {
-        //
+        $dados = setor::join('gerencias as g', 'g.id_setor', '=', 'setores.id_setor')
+        ->join('users as u', 'u.id_user', '=', 'g.id_user')
+        ->select([
+            'setores.id_setor as ID',
+            'setores.nome as Nome',
+            'u.name as Gerente'
+        ])->paginate(10);
+        return view('lista', [
+            'dados' => $dados,
+            'titulopadrao'   => 'Setores cadastrados',
+            'caminhoDetalhe' => '/setor/detalhe/',
+            'novo'           => '/setor/cadastro'
+        ]);
     }
 
     /**
