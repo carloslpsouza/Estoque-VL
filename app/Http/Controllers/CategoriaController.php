@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CategoriaController extends Controller
 {
@@ -34,7 +35,9 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('/categoria/cadastro', [
+            'titulopadrao' => 'Nova categoria'
+          ]);
     }
 
     /**
@@ -45,7 +48,13 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categoria = new Categoria();
+    
+        $categoria->nome        = $request->nome;
+        $categoria->observacoes = $request->email;
+        
+        $categoria->save();
+        return redirect('/categoria')->with('msg', 'Categoria salva com sucesso!');
     }
 
     /**

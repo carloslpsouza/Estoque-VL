@@ -15,17 +15,17 @@ class SetorController extends Controller
     public function index()
     {
         $dados = setor::join('gerencias as g', 'g.id_setor', '=', 'setores.id_setor')
-        ->join('users as u', 'u.id_user', '=', 'g.id_user')
-        ->select([
-            'setores.id_setor as ID',
-            'setores.nome as Nome',
-            'u.name as Gerente'
-        ])->paginate(10);
+            ->join('users as u', 'u.id_user', '=', 'g.id_user')
+            ->select([
+                'setores.id_setor as ID',
+                'setores.nome as Nome',
+                'u.name as Gerente'
+            ])->paginate(10);
         return view('lista', [
             'dados' => $dados,
             'titulopadrao'   => 'Setores cadastrados',
-            'caminhoDetalhe' => '/setor/detalhe/',
-            'novo'           => '/setor/cadastro'
+            'caminhoDetalhe' => '/setor/detalhe',
+            'novo'           => '/setor/novo'
         ]);
     }
 
@@ -93,5 +93,17 @@ class SetorController extends Controller
     public function destroy(setor $setor)
     {
         //
+    }
+    
+    public function jquerySetor(Request $request)
+    {
+        $busca = $request->busca;
+        $setor = setor::where('nome', 'LIKE', '%' . $busca . '%')->get();
+        $resposta = array();
+        foreach ($setor as $item) {
+            $resposta[] = array('value' => $item->id_setor, 'label' => $item->nome);
+        }
+
+        return response()->json($resposta);
     }
 }

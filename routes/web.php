@@ -54,8 +54,15 @@ Route::get('/saida/save', [SaidaController::class, 'store'])->middleware('auth')
 Route::get('/session/destroy/{session}', [SessionController::class, 'sessionDestroy'])->middleware('auth');
 
 Route::get('/setor', [SetorController::class, 'index'])->middleware('auth');
+Route::post('/getsetor/{nome?}', [SetorController::class, 'jquerySetor'])->name('getsetor')->middleware('auth');
+
 Route::get('/categoria', [CategoriaController::class, 'index'])->middleware('auth');
-Route::get('/users', [UsersAdminController  ::class, 'index'])->middleware('auth');
+Route::get('/categoria/cadastro', [CategoriaController::class, 'create'])->middleware('auth');
+Route::post('/categoria/save', [CategoriaController::class, 'store'])->middleware('auth');
+
+Route::get('/users', [UsersAdminController::class, 'index'])->middleware('auth');
+Route::get('/users/cadastro', [UsersAdminController::class, 'create'])->middleware('auth');
+Route::post('/users/save', [UsersAdminController::class, 'store'])->middleware('auth');
 
 Route::middleware([
     'auth:sanctum',
