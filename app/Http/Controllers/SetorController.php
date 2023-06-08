@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gerencia;
 use App\Models\setor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class SetorController extends Controller
 {
@@ -25,7 +27,7 @@ class SetorController extends Controller
             'dados' => $dados,
             'titulopadrao'   => 'Setores cadastrados',
             'caminhoDetalhe' => '/setor/detalhe',
-            'novo'           => '/setor/novo'
+            'novo'           => '/setor/cadastro'
         ]);
     }
 
@@ -36,7 +38,9 @@ class SetorController extends Controller
      */
     public function create()
     {
-        //
+        return view('/Setor/cadastro', [
+            'titulopadrao' => 'Novo setor'
+          ]);
     }
 
     /**
@@ -47,7 +51,19 @@ class SetorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $setor = new setor;
+        $gerencias = new Gerencia;
+
+        $setor->nome  = $request->nome;
+        $id_user      = $request->id_user;
+        $setor->save();
+        $lastInsertId = $setor->getConnection()->getPdo()->lastInsertId();
+
+        $gerencias->id_user  = $id_user;
+        $gerencias->id_setor = $lastInsertId;
+        $gerencias->save();
+        
+        return redirect('/setor')->with('msg', 'Usuário salvo com sucesso!');
     }
 
     /**

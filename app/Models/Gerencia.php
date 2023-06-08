@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Gerencia extends Model
 {
     use HasFactory;
+    public $timestamps = false;
 }

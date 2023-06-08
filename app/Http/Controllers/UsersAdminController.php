@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\setor;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -37,7 +38,7 @@ class UsersAdminController extends Controller
     {
         return view('/user/cadastro', [
             'titulopadrao' => 'Novo usuário'
-          ]);
+        ]);
     }
 
     /**
@@ -49,15 +50,15 @@ class UsersAdminController extends Controller
     public function store(Request $request)
     {
         $user = new User;
-    
+
         $user->name        = $request->nome;
         $user->email       = $request->email;
         $user->password    = bcrypt($request->password);
         $user->id_setor    = $request->id_setor;
-    
+
         $user->save();
         return redirect(Session::previousUrl())->with('msg', 'Usuário salvo com sucesso!');
-      }
+    }
 
     /**
      * Display the specified resource.
@@ -102,5 +103,18 @@ class UsersAdminController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function jqueryUser(Request $request)
+    {
+        $busca = $request->busca;
+        $user = User::where('name', 'LIKE', '%' . $busca . '%')->get();
+        $resposta = array();
+        foreach ($user as $item) {
+            $setor = setor::where('id_setor', '=', $item->id_setor)->get('nome');
+            $resposta[] = array('value' => $item->id_user, 'label' => $item->name." - ".$setor[0]['nome']);
+        }
+
+        return response()->json($resposta);
     }
 }

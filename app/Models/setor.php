@@ -9,4 +9,5 @@ class setor extends Model
 {
     use HasFactory;
     protected $table = 'setores';
+    public $timestamps = false;
 }
