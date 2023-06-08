@@ -8,7 +8,8 @@
                 @csrf
                 @if (session()->get('entradasTemporarias'))
                     <h3>Nota Fiscal: {{ session()->get('entradasTemporarias.0.nota_fiscal') }}</h3>
-                    <p><strong>Fornecedor: ID: {{ session()->get('entradasTemporarias.0.id_fornecedor') }} CNPJ: {{ session()->get('entradasTemporarias.0.nm_fornecedor') }}</strong></p>
+                    <p><strong>Fornecedor: ID: {{ session()->get('entradasTemporarias.0.id_fornecedor') }} CNPJ:
+                            {{ session()->get('entradasTemporarias.0.nm_fornecedor') }}</strong></p>
                 @else
                     <label for="nome">Nota fiscal</label>
                     <input required type="text" class="form-control" name='nota_fiscal' id="notafiscal"
@@ -55,7 +56,12 @@
                         @foreach (session()->get('entradasTemporarias') as $index => $item)
                             <tr>
                                 @foreach ($item as $idx => $it)
-                                    @unless ($idx == 'id_user' || $idx == 'id_fornecedor' || $idx == 'nota_fiscal' || $idx == 'id_produto' || $idx == 'nm_fornecedor')
+                                    @unless (
+                                        $idx == 'id_user' ||
+                                            $idx == 'id_fornecedor' ||
+                                            $idx == 'nota_fiscal' ||
+                                            $idx == 'id_produto' ||
+                                            $idx == 'nm_fornecedor')
                                         @if (is_array($it))
                                             <td>{{ $it[0] }}</td>
                                         @else
@@ -106,8 +112,9 @@
                 @endif
             </form>
         </div>
-        <a href={{session()->get('_previous.url')}}>voltar</a>
+        <a href={{ session()->get('_previous.url') }}>voltar</a>
     </div>
 
     <script src="/js/scripts.js"></script>
+    <script src="/js/entradas.js"></script>
 @endsection

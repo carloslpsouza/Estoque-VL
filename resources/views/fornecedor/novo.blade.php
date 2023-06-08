@@ -20,6 +20,7 @@
 
                 <label for="observacoes"  value="{{ old('observacoes') }}">Observações</label>
                 <textarea type="text" class="form-control" name='observacoes' id="observacoes"></textarea>
+                <br>
                 <button type="submit" class="btn btn-primary mb-3">Gravar</button>
             </form>
         </div>

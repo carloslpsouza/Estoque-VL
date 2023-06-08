@@ -133,7 +133,8 @@
                         @if (Auth::user()->id_setor == 1)
                             <li class="border-top my-3"></li>
                             <li class="mb-1 danger">
-                                <button class="text-danger btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                                <button
+                                    class="text-danger btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
                                     data-bs-toggle="collapse" data-bs-target="#admin-collapse" aria-expanded="false">
                                     Admin
                                 </button>
@@ -173,6 +174,11 @@
                                     this.closest('form').submit();">Sign
                                             Out</a>
                                     </li>
+                                    @guest
+                                        <li><a href="/login"
+                                                class="text-sucess link-dark d-inline-flex text-decoration-none rounded">Sign in</a>
+                                        </li>
+                                    @endguest
                                 </form>
                             </ul>
                         </div>
