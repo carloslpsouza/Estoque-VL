@@ -2,7 +2,7 @@
 @section('title', $titulopadrao)
 @section('content')
     <div id="produtos-conteiner" class="col-md-12 offset-md-1">
-        <h5>{{ $titulopadrao }}</h5>
+        <h3>{{ $titulopadrao }}</h3>
         <hr>
         <div class="col-md-10">
             <table class="table table-hover">

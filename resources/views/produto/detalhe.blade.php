@@ -55,7 +55,7 @@
                         </a>
                     @endif
                 @else
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-light">Este produto
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-light">
                         Este produto ainda não tem fornecedor cadastrado.
                     </a>
             @endif
