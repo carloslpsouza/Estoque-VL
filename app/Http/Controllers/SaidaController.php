@@ -50,10 +50,11 @@ class SaidaController extends Controller
         $saida = [
             'quantidade'    => intval($item['quantidade'][0]),
             'numeroSerie'   => strval($item['numeroserie'][0]),
-            'id_entrada'    => intval($item['id_entrada'][0]),
+            'id_saida'      => intval($item['id_saida'][0]),
             'observacoes'   => strval($item['observacoes'][0]),
             'id_produto'    => intval($item['id_produto'][0]),
             'id_user'       => intval($item['id_user']),
+            'id_setor'      => intval($item['id_setor']),
             'created_at'    => date('Y-m-d H:i:s')
         ];
         /* dd($saida); */
@@ -79,10 +80,11 @@ class SaidaController extends Controller
             'quantidade'     => $request->quantidade,
             'nome'           => $request->nome,
             'numeroserie'    => $request->numeroserie,
-            'id_entrada'     => $request->id_entrada,
+            'id_saida'       => $request->id_saida,
             'observacoes'    => $request->observacoes,
             'id_produto'     => $request->id_produto,
-            'id_user'        => Auth::id()
+            'id_user'        => Auth::id(),
+            'id_setor'       => Auth::user()->id_setor
         ];
         Session::push('saidasTemporarias', $saidaTemporaria);
         return redirect('/estoque/saida');

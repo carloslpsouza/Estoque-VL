@@ -23,6 +23,7 @@ class MovimentoController extends Controller
             ->join('users', 'users.id_user', '=', 'entradas.id_user')
             ->where('entradas.id_setor', '=', Auth::user()->id_setor)
             ->select(
+                'entradas.id as ID',
                 DB::raw("'Entrada' as Tipo"),
                 'entradas.created_at as Data',
                 'entradas.quantidade as QTDE',
@@ -35,6 +36,7 @@ class MovimentoController extends Controller
             ->join('users', 'users.id_user', '=', 'saidas.id_user')
             ->where('saidas.id_setor', '=', Auth::user()->id_setor)
             ->select(
+                'saidas.id_saida as ID',
                 DB::raw("'Saída' as Tipo"),
                 'saidas.created_at as Data',
                 'saidas.quantidade as QTDE',
@@ -50,7 +52,7 @@ class MovimentoController extends Controller
         return view('lista', [
             'dados' => $dados,
             'titulopadrao'   => 'Movimentos',
-            'caminhoDetalhe' => '#',
+            'caminhoDetalhe' => '/movimentos/detalhe/',
             'novo'           => '/estoque/entrada'
         ]);
     }
@@ -116,11 +118,35 @@ class MovimentoController extends Controller
      * @param  \App\Models\Movimento  $movimento
      * @return \Illuminate\Http\Response
      */
-    public function show(Movimento $movimento)
+    /* public function show(Movimento $movimento)
     {
         $movimento = Movimento::findOrFail($movimento);
-
         return $movimento;
+    } */
+    public function show($id)
+    {
+        $entradas = entrada::join('produtos', 'entradas.id_produto', '=', 'produtos.id_produto')
+            ->join('users', 'users.id_user', '=', 'entradas.id_user')
+            ->where('entradas.id', '=', $id)
+            ->get([
+                DB::raw("'Entrada' as Tipo"),
+                'entradas.id',
+                'entradas.nota_fiscal as NF',
+                'entradas.created_at',
+                'entradas.numeroSerie',
+                'entradas.garantia',
+                'entradas.quantidade',
+                'entradas.observacoes',
+                'produtos.nome',
+                'users.name as responsavel'
+            ]);
+        $fornecedores = new ForneceProdutoController;
+        $movimento = new MovimentoController;
+        return view('movimentos.detalhe', [
+            'movimento' => $entradas,
+            'fornecedores' => $fornecedores->show($id),
+            'movimentopproduto' => '$movimento->listaMovPProduto($id)'
+        ]);
     }
 
     /**

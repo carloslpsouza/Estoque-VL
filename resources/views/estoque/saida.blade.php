@@ -38,7 +38,7 @@
                         @foreach (session()->get('saidasTemporarias') as $index => $item)
                             <tr>
                                 @foreach ($item as $idx => $it)
-                                    @unless ($idx == 'id_user' || $idx == 'id_produto' || $idx == 'id_entrada')
+                                    @unless ($idx == 'id_user' || $idx == 'id_produto' || $idx == 'id_saida' || $idx == 'id_setor')
                                         @if (is_array($it))
                                             <td>{{ $it[0] }}</td>
                                         @else
@@ -73,7 +73,7 @@
                             
                             <input type="hidden" id="nome" name="nome[]"/>
                             <input type="hidden" id="numeroserie" name="numeroserie[]"/>
-                            <input type="hidden" id="id_entrada" name="id_entrada[]"/>
+                            <input type="hidden" id="id_saida" name="id_saida[]"/>
                             <input type="hidden" id="id_produto" name="id_produto[]"/>
                             <span class="input-group-btn">
                                 <button type="submit" class="btn btn-success btn-add"><strong>+</strong></button>

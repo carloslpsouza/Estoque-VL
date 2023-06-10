@@ -44,6 +44,7 @@ Route::post('/fornecedor/save', [FornecedorController::class, 'store'])->middlew
 Route::get('/estoque', [EstoqueController::class, 'index'])->middleware('auth');
 Route::get('/emfalta', [EstoqueController::class, 'inFault'])->middleware('auth');
 Route::get('/movimentos', [MovimentoController::class, 'index'])->middleware('auth');
+Route::get('/movimentos/detalhe/{id?}', [MovimentoController::class, 'show'])->middleware('auth');
 Route::get('/estoque/entrada', [EntradaController::class, 'index'])->middleware('auth');
 Route::get('/estoque/saida', [SaidaController::class, 'index'])->middleware('auth');
 Route::get('/entrada/save', [EntradaController::class, 'store'])->middleware('auth');
