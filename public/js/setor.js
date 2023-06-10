@@ -25,6 +25,7 @@ $(document).ready(function () {
     select: function (event, ui) {
       /* console.log(ui); */
       $('#setor').val(ui.item.label);
+      $('#nm-setor').val(ui.item.label);
       $('#id-setor').val(ui.item.value);
       return false;
     }

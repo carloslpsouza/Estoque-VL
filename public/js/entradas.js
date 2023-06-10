@@ -27,7 +27,7 @@ $(document).ready(function () {
     },
     select: function (event, ui) {
       /* console.log(ui); */
-      $('#setor').val(ui.item.label);
+      $('#nome').val(ui.item.label);
       $('#id-produto').val(ui.item.value);
       return false;
     }
