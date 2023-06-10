@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('fornecedores', function (Blueprint $table) {
-            $table->string('status')->default('ativo');
+            $table->string('status')->default(1);
         });
     }
 
