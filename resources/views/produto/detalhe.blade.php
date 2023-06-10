@@ -49,6 +49,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        @if (method_exists($movimentopproduto, 'links'))
+                            {{ $movimentopproduto->links('./components.pagination') }}
+                        @endif
                     @else
                         <a href="#" class="list-group-item list-group-item-action list-group-item-light">Este produto
                             Este produto ainda não foi movimentado.
@@ -59,7 +62,7 @@
                         Este produto ainda não tem fornecedor cadastrado.
                     </a>
             @endif
-            <a href={{session()->get('_previous.url')}}>voltar</a>
+            <a href={{ session()->get('_previous.url') }}>voltar</a>
         </div>
     </div>
 
