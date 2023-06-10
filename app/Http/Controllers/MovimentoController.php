@@ -7,6 +7,7 @@ use App\Models\saida;
 use App\Models\Movimento;
 use App\Models\Produto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class MovimentoController extends Controller
@@ -20,6 +21,7 @@ class MovimentoController extends Controller
     {
         $entradas = Entrada::join('produtos', 'produtos.id_produto', '=', 'entradas.id_produto')
             ->join('users', 'users.id_user', '=', 'entradas.id_user')
+            ->where('entradas.id_setor', '=', Auth::user()->id_setor)
             ->select(
                 DB::raw("'Entrada' as Tipo"),
                 'entradas.created_at as Data',
@@ -31,6 +33,7 @@ class MovimentoController extends Controller
 
         $saidas = Saida::join('produtos', 'produtos.id_produto', '=', 'saidas.id_produto')
             ->join('users', 'users.id_user', '=', 'saidas.id_user')
+            ->where('saidas.id_setor', '=', Auth::user()->id_setor)
             ->select(
                 DB::raw("'Saída' as Tipo"),
                 'saidas.created_at as Data',
@@ -57,10 +60,11 @@ class MovimentoController extends Controller
         $entradas = Entrada::join('produtos', 'produtos.id_produto', '=', 'entradas.id_produto')
             ->join('users', 'users.id_user', '=', 'entradas.id_user')
             ->where('produtos.id_produto', '=', $id_produto)
+            ->where('entradas.id_setor', '=', Auth::user()->id_setor)
             ->select(
                 DB::raw("'Entrada' as Tipo"),
                 'entradas.created_at as Data',
-                'entradas.quantidade as QTY',
+                'entradas.quantidade as QTDE',
                 'produtos.nome as Nome',
                 'entradas.numeroSerie as N. de série',
                 'users.name as Responsável'
@@ -69,10 +73,11 @@ class MovimentoController extends Controller
         $saidas = Saida::join('produtos', 'produtos.id_produto', '=', 'saidas.id_produto')
             ->join('users', 'users.id_user', '=', 'saidas.id_user')
             ->where('produtos.id_produto', '=', $id_produto)
+            ->where('saidas.id_setor', '=', Auth::user()->id_setor)
             ->select(
                 DB::raw("'Saída' as Tipo"),
                 'saidas.created_at as Data',
-                'saidas.quantidade as QTY',
+                'saidas.quantidade as QTDE',
                 'produtos.nome as Nome',
                 'saidas.numeroSerie as N. de série',
                 'users.name as Responsável'
@@ -80,8 +85,7 @@ class MovimentoController extends Controller
 
         $dados = $entradas->union($saidas)
             ->orderBy('Data')
-            ->get();
-
+            ->paginate(2);
         return $dados;
     }
 

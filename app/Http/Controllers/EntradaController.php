@@ -64,6 +64,7 @@ class EntradaController extends Controller
                 'id_produto'    => intval($item['id_produto'][0]),
                 'id_user'       => intval($item['id_user']),
                 'id_fornecedor' => intval($item['id_fornecedor']),
+                'id_setor'      => intval($item['id_setor']),
                 'created_at'    => date('Y-m-d H:i:s')
             ];
             /* dd($entrada); */
@@ -72,12 +73,14 @@ class EntradaController extends Controller
 
         // Replicar a nota fiscal e o id_user em todos os registros
         $idFornecedor = $entradas[0]['id_fornecedor'];
-        $notaFiscal = $entradas[0]['nota_fiscal'];
-        $idUser = $entradas[0]['id_user'];
+        $notaFiscal   = $entradas[0]['nota_fiscal'];
+        $idUser       = $entradas[0]['id_user'];
+        $idSetor      = $entradas[0]['id_setor'];
         foreach ($entradas as &$entrada) {
             $entrada['id_fornecedor'] = $idFornecedor;
             $entrada['nota_fiscal']   = $notaFiscal;
             $entrada['id_user']       = $idUser;
+            $entrada['id_setor']      = $idSetor;
         }
 
         Entrada::insert($entradas);
@@ -94,6 +97,7 @@ class EntradaController extends Controller
         $entradaTemporaria = [
             'nota_fiscal'    => $request->nota_fiscal,
             'quantidade'     => $request->quantidade,
+            'nm_setor'       => $request->setor,
             'nome'           => $request->nome,
             'numeroserie'    => $request->numeroSerie,
             'valor'          => $request->valor,
@@ -102,6 +106,7 @@ class EntradaController extends Controller
             'id_produto'     => $request->id_produto,
             'id_user'        => Auth::id(),
             'id_fornecedor'  => $id_fornecedor,
+            'id_setor'       => $request->id_setor,
             'nm_fornecedor'  => $request->nm_fornecedor
         ];
         Session::push('entradasTemporarias', $entradaTemporaria);
@@ -167,7 +172,8 @@ class EntradaController extends Controller
         }
         if ($request->tipo == "2") {
             $entrada = entrada::join('produtos', 'produtos.id_produto', '=', 'entradas.id_produto')
-            ->where('produtos.nome', 'LIKE', '%' . $busca . '%')->get();
+            ->where('produtos.nome', 'LIKE', '%' . $busca . '%')
+            ->where('entradas.id_setor', '=', Auth::user()->id_setor)->get();
             $resposta = array();
             foreach ($entrada as $item) {                
                 $resposta[] = array('value' => $item, 'label' => $item->numeroSerie." - ".$item->nome);

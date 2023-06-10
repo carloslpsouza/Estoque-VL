@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\setor;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class UsersAdminController extends Controller
@@ -16,11 +18,14 @@ class UsersAdminController extends Controller
      */
     public function index()
     {
-        $dados = User::select([
-            'id_user as ID',
-            'name as Nome',
-            'email as E-mail'
-        ])->paginate(10);
+        $dados = User::join('setores as st', 'st.id_setor', '=', 'users.id_setor')
+        ->select([
+            'users.id_user as ID',
+            'users.name as Nome',
+            'users.email as E-mail',
+            'st.nome as Setor'
+        ])
+        ->paginate(10);
         return view('lista', [
             'dados' => $dados,
             'titulopadrao'   => 'Usuários cadastrados',

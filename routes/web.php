@@ -54,6 +54,7 @@ Route::get('/saida/save', [SaidaController::class, 'store'])->middleware('auth')
 Route::get('/session/destroy/{session}', [SessionController::class, 'sessionDestroy'])->middleware('auth');
 
 Route::get('/setor', [SetorController::class, 'index'])->middleware('auth');
+Route::get('/setorName/{id?}', [SetorController::class, 'showName'])->middleware('auth');
 Route::get('/setor/cadastro', [SetorController::class, 'create'])->middleware('auth');
 Route::post('/setor/save', [SetorController::class, 'store'])->middleware('auth');
 Route::post('/getsetor/{nome?}', [SetorController::class, 'jquerySetor'])->name('getsetor')->middleware('auth');

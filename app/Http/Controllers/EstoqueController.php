@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\estoque;
+use App\Models\setor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class EstoqueController extends Controller
@@ -15,8 +17,9 @@ class EstoqueController extends Controller
      */
     public function index()
     {
-
+        $setor = new SetorController;
         $dados = Estoque::join('produtos', 'produtos.id_produto', '=', 'estoque.id_produto')
+        ->where('estoque.id_setor', '=', Auth::user()->id_setor)
         ->get([
             'produtos.id_produto as ID',
             'estoque.id_setor as Setor',
@@ -26,7 +29,7 @@ class EstoqueController extends Controller
         ]);
         return view('lista', [
             'dados'          => $dados, 
-            'titulopadrao'   => 'Estoque', 
+            'titulopadrao'   => 'Estoque - '.$setor->showName(Auth::user()->id_setor)[0]['nome'], 
             'caminhoDetalhe' => 'estoque/detalhe/',
             'novo'           => false]);        
     }
@@ -114,6 +117,7 @@ class EstoqueController extends Controller
                 'produtos.minimo as Mínimo'
             )
             ->where('estoque.quantidade', '<', DB::raw('produtos.minimo'))
+            ->where('id_setor', '=', Auth::user()->id_setor)
             ->paginate(10);
         
         return view('estoque/emfalta', [
@@ -132,15 +136,7 @@ class EstoqueController extends Controller
      */
     public function inFaultCount()
     {
-        $dados = DB::select('SELECT produtos.id_produto as ID, produtos.nome as Nome, estoque.quantidade as Atual, produtos.minimo as Mínimo FROM estoque JOIN produtos ON estoque.id_produto = produtos.id_produto WHERE estoque.quantidade < produtos.minimo');
-        /*$dados = estoque::join('produtos', 'produtos.id_produto', '=', 'estoque.id_produto')
-        ->where('estoque.quantidade','<','estoque.minimo')
-        ->get([
-            'produtos.id_produto as ID',
-            'produtos.nome as Nome',
-            'estoque.quantidade as Atual',
-            'estoque.minimo as Mínimo'
-        ]); */
+        $dados = DB::select('SELECT produtos.id_produto as ID, produtos.nome as Nome, estoque.quantidade as Atual, produtos.minimo as Mínimo FROM estoque JOIN produtos ON estoque.id_produto = produtos.id_produto WHERE estoque.quantidade < produtos.minimo AND estoque.id_setor = '.Auth::user()->id_setor);
         return count($dados);
     }
 }

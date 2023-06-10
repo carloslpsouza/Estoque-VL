@@ -27,7 +27,7 @@ return new class extends Migration
                 
                 SELECT quantidade INTO quantidade_atual
                 FROM estoque
-                WHERE id_produto = NEW.id_produto;
+                WHERE id_produto = NEW.id_produto AND id_setor = setor;
                 
                 IF quantidade_atual > 0 THEN
                     UPDATE estoque SET quantidade = quantidade - NEW.quantidade

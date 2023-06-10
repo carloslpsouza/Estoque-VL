@@ -183,7 +183,10 @@
                             </ul>
                         </div>
                     </li>
-                </ul>
+                </ul><hr>
+                <div class="usuario">
+                    {{Auth::user()->name}} - {{getNomeSetor(Auth::user()->id_setor)}}
+                </div>
             </div>
             <div class="flex-shrink-0 p-3 bg-white">
                 @yield('content')

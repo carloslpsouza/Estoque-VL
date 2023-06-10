@@ -9,8 +9,11 @@
                 @csrf
                 @if (session()->get('entradasTemporarias'))
                     <h3>Nota Fiscal: {{ session()->get('entradasTemporarias.0.nota_fiscal') }}</h3>
-                    <p><strong>Fornecedor: ID: {{ session()->get('entradasTemporarias.0.id_fornecedor') }} CNPJ:
-                            {{ session()->get('entradasTemporarias.0.nm_fornecedor') }}</strong></p>
+                    <p><strong>Fornecedor:</strong><br>
+                        ID: {{ session()->get('entradasTemporarias.0.id_fornecedor') }} <br>
+                        CNPJ: {{ session()->get('entradasTemporarias.0.nm_fornecedor') }} <br>
+                        Setor: {{ session()->get('entradasTemporarias.0.nm_setor') }} <br>
+                    </p>
                 @else
                     <label for="nome">Nota fiscal</label>
                     <input required type="text" class="form-control" name='nota_fiscal' id="notafiscal"
@@ -20,11 +23,20 @@
                         id="fornecedor" value="{{ old('fornecedor') }}" autocomplete="off">
                     <input required type="hidden" name='id_fornecedor' id="id-fornecedor">
                     <input required type="hidden" name='nm_fornecedor' id="nm-fornecedor">
+
+                    <label for="setor">Setor</label>
+                    <input type="text" class="form-control" name='setor' id="setor" value="{{ old('setor') }}"
+                        required>
+                    <input required type="hidden" name='id_setor' id="id-setor">
+                    <input required type="hidden" name='nm_setor' id="nm-setor">
                 @endif
                 <hr>
                 @php
-                    //var_dump(session()->get('entradasTemporarias'));
+                    //dd(session()->get('entradasTemporarias'));
+                    //print_r(session()->get('entradasTemporarias'));
+                    //print_r(session()->all());
                 @endphp
+
                 @if (session()->get('entradasTemporarias'))
                     <table class="table table-hover">
                         <thead>
@@ -49,10 +61,6 @@
                                 </th>
                             </tr>
                         </thead>
-                        @php
-                            /* print_r(session()->get('entradasTemporarias')); */
-                            /* print_r(session()->all()); */
-                        @endphp
 
                         @foreach (session()->get('entradasTemporarias') as $index => $item)
                             <tr>
@@ -62,7 +70,9 @@
                                             $idx == 'id_fornecedor' ||
                                             $idx == 'nota_fiscal' ||
                                             $idx == 'id_produto' ||
-                                            $idx == 'nm_fornecedor')
+                                            $idx == 'nm_fornecedor' ||
+                                            $idx == 'nm_setor' ||
+                                            $idx == 'id_setor')
                                         @if (is_array($it))
                                             <td>{{ $it[0] }}</td>
                                         @else
@@ -83,7 +93,6 @@
                 <div class="row">
                     <div class="form-group multiple-form-group input-group campos_entrada" autocomplete="off">
                         <div class="input-group-btn input-group-select">
-                            {{-- <input required type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
                             <input required type="number" class="form-control" name='quantidade[]' id="quantidade"
                                 value="{{ old('quantidade') }}" placeholder="qt">
 
@@ -118,4 +127,5 @@
 
     <script src="/js/scripts.js"></script>
     <script src="/js/entradas.js"></script>
+    <script src="/js/setor.js"></script>
 @endsection

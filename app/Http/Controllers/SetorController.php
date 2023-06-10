@@ -77,6 +77,11 @@ class SetorController extends Controller
         //
     }
 
+    public function showName($id){
+        $setor = setor::where('id_setor', '=', $id)->get('nome');
+        return $setor;
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

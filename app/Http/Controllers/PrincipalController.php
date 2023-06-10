@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\entrada;
 use App\Models\estoque;
 use App\Models\Fornecedor;
 use App\Models\Movimento;
 use App\Models\Produto;
+use App\Models\saida;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PrincipalController extends Controller
 {
@@ -18,10 +21,10 @@ class PrincipalController extends Controller
     public function index()
     {
         $qtdeProdutos     = Produto::all()->count();
-        $qtdeEstoque      = estoque::all()->count(); //relacionar ao setor
+        $qtdeEstoque      = estoque::all()->where('id_setor', '=', Auth::user()->id_setor)->sum('quantidade'); //relacionar ao setor
         //$qtdeEstoque    = estoque::all()->where('id_setor', '=', user.id_setor)->count();
         $qtdeFornecedores = Fornecedor::all()->count();
-        $qtdeMovimentos   = Movimento::all()->count();
+        $qtdeMovimentos   = entrada::all()->where('id_setor', '=', Auth::user()->id_setor)->count() + saida::all()->where('id_setor', '=', Auth::user()->id_setor)->count();
         $qtdeEmFalta      = new EstoqueController;
         $contadores = [
             'qtdeProdutos'     => $qtdeProdutos, 
