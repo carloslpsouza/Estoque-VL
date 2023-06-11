@@ -52,7 +52,7 @@ class MovimentoController extends Controller
         return view('lista', [
             'dados' => $dados,
             'titulopadrao'   => 'Movimentos',
-            'caminhoDetalhe' => '/movimentos/detalhe/',
+            'caminhoDetalhe' => '/movimentos/detalhe/tipo',
             'novo'           => '/estoque/entrada'
         ]);
     }
@@ -123,27 +123,45 @@ class MovimentoController extends Controller
         $movimento = Movimento::findOrFail($movimento);
         return $movimento;
     } */
-    public function show($id)
+    public function show($tipo, $id)
     {
-        $entradas = entrada::join('produtos', 'entradas.id_produto', '=', 'produtos.id_produto')
-            ->join('users', 'users.id_user', '=', 'entradas.id_user')
-            ->where('entradas.id', '=', $id)
-            ->get([
-                DB::raw("'Entrada' as Tipo"),
-                'entradas.id',
-                'entradas.nota_fiscal as NF',
-                'entradas.created_at',
-                'entradas.numeroSerie',
-                'entradas.garantia',
-                'entradas.quantidade',
-                'entradas.observacoes',
-                'produtos.nome',
-                'users.name as responsavel'
-            ]);
+        $id = intval($id);
+        /* dd($id, $tipo); */
+        if ($tipo == "Entrada") {            
+            $dados = entrada::join('produtos', 'entradas.id_produto', '=', 'produtos.id_produto')
+                ->join('users', 'users.id_user', '=', 'entradas.id_user')
+                ->where('entradas.id', '=', $id)
+                ->get([
+                    DB::raw("'Entrada' as Tipo"),
+                    'entradas.id',
+                    'entradas.nota_fiscal as NF',
+                    'entradas.created_at',
+                    'entradas.numeroSerie',
+                    'entradas.garantia',
+                    'entradas.quantidade',
+                    'entradas.observacoes',
+                    'produtos.nome',
+                    'users.name as responsavel'
+                ]);
+        } else {
+            $dados = saida::join('produtos', 'saidas.id_produto', '=', 'produtos.id_produto')
+                ->join('users', 'users.id_user', '=', 'saidas.id_user')
+                ->where('saidas.id_saida', '=', $id)
+                ->get([
+                    DB::raw("'Saída' as Tipo"),
+                    'saidas.id_saida',
+                    'saidas.created_at',
+                    'saidas.numeroSerie',
+                    'saidas.id_entrada',
+                    'saidas.quantidade',
+                    'saidas.observacoes',
+                    'produtos.nome',
+                    'users.name as responsavel'
+                ]);
+        }
         $fornecedores = new ForneceProdutoController;
-        $movimento = new MovimentoController;
         return view('movimentos.detalhe', [
-            'movimento' => $entradas,
+            'movimento' => $dados,
             'fornecedores' => $fornecedores->show($id),
             'movimentopproduto' => '$movimento->listaMovPProduto($id)'
         ]);

@@ -10,30 +10,35 @@
         <hr>
         <div class="col-md-10">
             {{-- {{dd($movimento)}} --}}
-            <p>{{ date('d/m/Y H:i:s', strtotime($movimento[0]->created_at)) }} Tipo: {{ $movimento[0]->Tipo }} ID:
-                {{ $movimento[0]->id }}</p>
+            <p>{{ date('d/m/Y H:i:s', strtotime($movimento[0]->created_at)) }}
+                Tipo: {{ $movimento[0]->Tipo }} ID: {{ $movimento[0]->id || $movimento[0]->id_saida }}<br>
+                Responsável: {{ $movimento[0]->responsavel }}
+            </p>
             <hr>
             <h5> {{ $movimento[0]->nome }}</h5>
             <p>
                 Numero de série: {{ $movimento[0]->numeroSerie }}<br>
-                Garantia (em dias): {{ $movimento[0]->garantia }}
                 @php
                     $dataAtual = new DateTime();
                     $dataBanco = new DateTime($movimento[0]->created_at);
                     $diferenca = $dataAtual->diff($dataBanco)->days;
                 @endphp
 
-                @if ($diferenca < $movimento[0]->garantia)
-                    <span class="text-success"><strong>Em garantia</strong></span>
-                @else
-                <span class="text-danger"><strong>Fora de garantia</strong></span>
+                @if (isset($movimento[0]->garantia))
+                    @if ($diferenca < $movimento[0]->garantia)
+                        Garantia (em dias): {{ $movimento[0]->garantia }}
+                        <span class="text-success"><strong>Em garantia</strong></span>
+                    @else
+                        Garantia (em dias): {{ $movimento[0]->garantia }}
+                        <span class="text-danger"><strong>Fora de garantia</strong></span>
+                    @endif
+                    <br>
                 @endif
-                <br>
                 Quantidade: {{ $movimento[0]->quantidade }}<br>
                 Observações: {{ $movimento[0]->observacoes }}
             </p>
             <hr>
-            <p>Responsável: {{ $movimento[0]->responsavel }}</p>
+            <p></p>
 
 
             <a href={{ session()->get('_previous.url') }}>voltar</a>

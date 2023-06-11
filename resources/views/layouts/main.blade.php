@@ -176,7 +176,7 @@
                                     </li>
                                     @guest
                                         <li><a href="/login"
-                                                class="text-sucess link-dark d-inline-flex text-decoration-none rounded">Sign in</a>
+                                                class="text-success link-dark d-inline-flex text-decoration-none rounded">Sign in</a>
                                         </li>
                                     @endguest
                                 </form>

@@ -19,7 +19,10 @@
                     </thead>
                     <tbody>
                         @foreach ($dados as $value)
-                            <tr onclick="location.href='{{ $caminhoDetalhe . $value->ID }}'">
+                            @php
+                             $caminho = str_replace('tipo'.$value->ID, $value->Tipo.'/'.$value->ID, $caminhoDetalhe.$value->ID)    
+                            @endphp
+                            <tr onclick="location.href='{{ $caminho }}'">
 
                                 @foreach (json_decode($value) as $key1 => $value1)
                                     @unless ($key1 == 'created_at' || $key1 == 'updated_at')
