@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.12.4.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Compiled and minified JavaScript -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -25,6 +24,9 @@
     <link href="/css/sidebars.css" rel="stylesheet">
     <link href="/css/pagination.css" rel="stylesheet">
     <link href="/css/styles.css" rel="stylesheet">
+
+    {{-- Outros --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 </head>
 
