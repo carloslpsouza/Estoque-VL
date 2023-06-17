@@ -11,7 +11,7 @@
                     <thead>
                         <tr>
                             @foreach (json_decode($dados[0]) as $key => $value)
-                                @unless ($key == 'created_at' || $key == 'updated_at')
+                                @unless ($key == 'created_at' || $key == 'updated_at' || $key == 'profile_photo_url')
                                     <th scope="col">{{ $key }}</th>
                                 @endunless
                             @endforeach
@@ -25,7 +25,7 @@
                             <tr onclick="location.href='{{ $caminho }}'">
 
                                 @foreach (json_decode($value) as $key1 => $value1)
-                                    @unless ($key1 == 'created_at' || $key1 == 'updated_at')
+                                    @unless ($key1 == 'created_at' || $key1 == 'updated_at' || $key1 == 'profile_photo_url')
                                         <td>{{ $value1 }}</td>
                                     @endunless
                                 @endforeach
