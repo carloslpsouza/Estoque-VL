@@ -31,6 +31,12 @@ class SetorController extends Controller
         ]);
     }
 
+    public function listaSetor()
+    {
+        $setor = setor::all();
+        return $setor;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

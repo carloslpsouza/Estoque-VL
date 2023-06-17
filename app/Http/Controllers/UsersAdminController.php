@@ -41,7 +41,9 @@ class UsersAdminController extends Controller
      */
     public function create()
     {
+        $setor = new SetorController;
         return view('/user/cadastro', [
+            'setores'      => $setor->listaSetor(),
             'titulopadrao' => 'Novo usuário'
         ]);
     }
