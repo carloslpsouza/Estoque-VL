@@ -62,7 +62,7 @@ class FornecedorController extends Controller
     {
         $fornecedor = new Fornecedor;
 
-        $fornecedor->nome          = $request->nome;
+        $fornecedor->nome          = strtoupper($request->nome);
         $fornecedor->email         = $request->email;
         $fornecedor->cnpj          = $request->cnpj;
         $fornecedor->telefone      = $request->telefone;

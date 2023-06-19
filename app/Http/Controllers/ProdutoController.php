@@ -44,7 +44,7 @@ class ProdutoController extends Controller
   {
     $produto = new Produto;
 
-    $produto->nome         = $request->nome;
+    $produto->nome         = strtoupper($request->nome);
     $produto->minimo       = $request->minimo;
     $produto->observacoes  = $request->observacoes;
     $produto->id_categoria = $request->id_categoria;

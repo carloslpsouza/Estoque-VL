@@ -50,8 +50,8 @@ class CategoriaController extends Controller
     {
         $categoria = new Categoria();
     
-        $categoria->nome        = $request->nome;
-        $categoria->observacoes = $request->email;
+        $categoria->nome        = strtoupper($request->nome);
+        $categoria->observacoes = $request->observacoes;
         
         $categoria->save();
         return redirect('/categoria')->with('msg', 'Categoria salva com sucesso!');

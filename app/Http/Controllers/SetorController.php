@@ -60,7 +60,7 @@ class SetorController extends Controller
         $setor = new setor;
         $gerencias = new Gerencia;
 
-        $setor->nome  = $request->nome;
+        $setor->nome  = strtoupper($request->nome);
         $id_user      = $request->id_user;
         $setor->save();
         $lastInsertId = $setor->getConnection()->getPdo()->lastInsertId();
