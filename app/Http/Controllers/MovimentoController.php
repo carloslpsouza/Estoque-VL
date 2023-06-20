@@ -130,6 +130,7 @@ class MovimentoController extends Controller
         if ($tipo == "Entrada") {            
             $dados = entrada::join('produtos', 'entradas.id_produto', '=', 'produtos.id_produto')
                 ->join('users', 'users.id_user', '=', 'entradas.id_user')
+                ->join('fornecedores', 'fornecedores.id_fornecedor', '=', 'entradas.id_fornecedor')
                 ->where('entradas.id', '=', $id)
                 ->get([
                     DB::raw("'Entrada' as Tipo"),
@@ -141,7 +142,9 @@ class MovimentoController extends Controller
                     'entradas.quantidade',
                     'entradas.observacoes',
                     'produtos.nome',
-                    'users.name as responsavel'
+                    'users.name as responsavel',
+                    'entradas.id_fornecedor',
+                    'fornecedores.nome as fornecedor'
                 ]);
         } else {
             $dados = saida::join('produtos', 'saidas.id_produto', '=', 'produtos.id_produto')

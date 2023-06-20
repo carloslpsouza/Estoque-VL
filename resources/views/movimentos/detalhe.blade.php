@@ -9,7 +9,7 @@
         <h5>{{ $titulopadrao }}</h5>
         <hr>
         <div class="col-md-10">
-            {{-- {{dd($movimento)}} --}}
+            {{--{{dd($movimento)}} --}}
             <p>{{ date('d/m/Y H:i:s', strtotime($movimento[0]->created_at)) }}
                 Tipo: {{ $movimento[0]->Tipo }} ID: {{ $movimento[0]->id || $movimento[0]->id_saida }}<br>
                 Responsável: {{ $movimento[0]->responsavel }}
@@ -18,6 +18,7 @@
             <h5> {{ $movimento[0]->nome }}</h5>
             <p>
                 Numero de série: {{ $movimento[0]->numeroSerie }}<br>
+                Fornecedor: <a href="/fornecedor/detalhe/{{ $movimento[0]->id_fornecedor }}">{{ $movimento[0]->id_fornecedor }} {{ $movimento[0]->fornecedor }}</a><br>
                 @php
                     $dataAtual = new DateTime();
                     $dataBanco = new DateTime($movimento[0]->created_at);
