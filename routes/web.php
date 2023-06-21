@@ -66,6 +66,7 @@ Route::post('/categoria/save', [CategoriaController::class, 'store'])->middlewar
 
 Route::get('/users', [UsersAdminController::class, 'index'])->middleware('auth');
 Route::get('/users/cadastro', [UsersAdminController::class, 'create'])->middleware('auth');
+Route::get('/users/edit/{id?}', [UsersAdminController::class, 'edit'])->middleware('auth');
 Route::post('/users/save', [UsersAdminController::class, 'store'])->middleware('auth');
 Route::post('/getuser/{nome?}', [UsersAdminController::class, 'jqueryUser'])->name('getuser')->middleware('auth');
 

@@ -86,7 +86,18 @@ class UsersAdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user   = User::find($id);
+        $setores = setor::get(['id_setor', 'nome']);
+        $campos = [
+            'name'     => ['type'=>'text', 'label'=>'Nome', 'value'=>$user->name],
+            'email'    => ['type'=>'email', 'label'=>'E-mail', 'value'=>$user->email],
+            'password' => ['type'=>'password', 'label'=>'Senha', 'value'=>null],
+            'id_setor' => ['type'=>'hidden', 'label'=>'id_setor', 'value'=>$user->id_setor],
+            'select2'  => ['type'=>'select', 'label'=>'Setor', 'value'=>$setores]
+        ];
+        $titulo = 'Edição de usuário';
+        $action = '/users/update';
+        return view('edit',['campos' => $campos, 'action' => $action, 'titulopadrao' => $titulo]);
     }
 
     /**
