@@ -1,66 +1,56 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Estoque VL
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Desenvolvido em Laravel, com o objetivo de fornecer uma solução básica e de fácil utilização para gerenciar o estoque de produtos, sem a necessidade de complexos controles fiscais que exijam preenchimento de muitas informações. Este sistema inclui recursos avançados de controle de acesso, permitindo a identificação dos responsáveis por cada ação, além de possibilitar o gerenciamento segmentado por setores. Dessa forma, é possível criar setores específicos, cada um controlando o seu próprio estoque.
 
-## About Laravel
+Esse projeto é especialmente indicado para setores ou prestadores de serviço que desejam manter um controle de estoque de forma simples, porém eficaz. Com essa solução, é possível otimizar o gerenciamento interno, garantindo uma melhor organização e rastreabilidade dos produtos.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Funcionalidades
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Cadastro, edição e exclusão de usuários, fornecedores e produtos;
+- Controle de estoque de cada produto;
+- Registro de garantia dos produtos;
+- Rastreamento de alterações no estoque;
+- Controle de acesso de usuários;
+- Gerenciamento segmentado por setores;
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Recursos Planejados para o futuro
 
-## Learning Laravel
+O Controle de Estoque Simples tem uma visão de desenvolvimento contínua e busca aprimorar suas funcionalidades ao longo do tempo. Abaixo estão alguns dos recursos planejados para as próximas versões:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. **Integração com Azure AD:** Permitirá a autenticação e autorização dos usuários através do Azure Active Directory, adicionando uma camada extra de segurança e integração com outros serviços da Microsoft.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+2. **Integração com GLPI:** Possibilitará a integração com o GLPI, facilitando a rastreabilidade sobre a utilização de recursos.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+3. **Geração de Pedido de Produtos:** Adicionará a capacidade de criar pedidos de produtos diretamente no sistema, tornando o processo de compra mais eficiente e organizado.
 
-## Laravel Sponsors
+4. **Gerenciamento de Cotações:** Permitirá a criação e o gerenciamento de cotações de produtos, facilitando a negociação com fornecedores e auxiliando no processo de compra.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Essas são apenas algumas das melhorias que pretendemos adicionar ao projeto. Fique atento às futuras atualizações para obter acesso a esses novos recursos!
 
-### Premium Partners
+## Requisitos do Sistema
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Certifique-se de que o seu sistema atenda aos seguintes requisitos:
 
-## Contributing
+- PHP 7.4 ou superior
+- Composer
+- Laravel 8.x
+- Banco de Dados (MySQL)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Instalação
 
-## Code of Conduct
+Sistema configurado para rodar com Docker atraves do docker-compose.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Contribuição
 
-## Security Vulnerabilities
+Se você quiser contribuir com este projeto, sinta-se à vontade para enviar pull requests. Toda ajuda é bem-vinda!
 
-If you discover a security vulnerability within Laravel, please send an email to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Informações Adicionais
 
-## License
+É importante ressaltar que este projeto encontra-se em fase de desenvolvimento contínuo, e algumas funcionalidades ainda estão sendo implementadas para aprimorar a experiência do usuário. Atualmente, algumas features podem não estar totalmente concluídas, mas estamos empenhados em aprimorar o sistema e adicionar novas funcionalidades para torná-lo ainda mais eficiente e completo. Agradecemos a compreensão e feedbacks dos usuários enquanto trabalhamos para oferecer uma solução de Controle de Estoque ainda mais robusta e funcional.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Contato
+Linkedin: https://www.linkedin.com/in/carloslpsouza/
+Email: carlosp.souza@gmail.com
+---
+
+
